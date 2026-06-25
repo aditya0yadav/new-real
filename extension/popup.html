@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MRT Status</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      width: 290px;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #0d0d1a;
+      color: #f1f5f9;
+      overflow: hidden;
+    }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .header-icon { font-size: 22px; }
+    .header-title { font-size: 13px; font-weight: 700; letter-spacing: 0.3px; }
+    .header-sub { font-size: 10px; opacity: 0.75; margin-top: 1px; }
+
+    /* Body */
+    .body { padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+
+    /* Status Card */
+    .card {
+      background: #161625;
+      border: 1px solid #252540;
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+
+    .status-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .status-dot.active {
+      background: #ef4444;
+      box-shadow: 0 0 6px #ef4444;
+      animation: pulse 1.2s ease-in-out infinite;
+    }
+    .status-dot.idle { background: #4b5563; }
+    .status-dot.ready { background: #22c55e; box-shadow: 0 0 6px #22c55e; }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50%       { transform: scale(0.75); opacity: 0.6; }
+    }
+
+    .status-label {
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .status-label.active { color: #f87171; }
+    .status-label.idle   { color: #9ca3af; }
+    .status-label.ready  { color: #4ade80; }
+
+    /* Info rows */
+    .info-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid #252540;
+    }
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+    }
+    .info-key { color: #6b7280; }
+    .info-val {
+      color: #e2e8f0;
+      font-weight: 500;
+      max-width: 160px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      text-align: right;
+    }
+    .info-val.timer {
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      color: #f87171;
+      font-weight: 700;
+    }
+
+    /* Stats row */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+    }
+    .stat-box {
+      background: #1a1a2e;
+      border: 1px solid #252540;
+      border-radius: 8px;
+      padding: 8px;
+      text-align: center;
+    }
+    .stat-num {
+      font-size: 18px;
+      font-weight: 700;
+      color: #818cf8;
+    }
+    .stat-lbl { font-size: 9px; color: #6b7280; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    /* Footer */
+    .footer {
+      padding: 8px 16px;
+      border-top: 1px solid #1a1a2e;
+      font-size: 10px;
+      color: #374151;
+      text-align: center;
+      letter-spacing: 0.3px;
+    }
+
+    .no-session-msg {
+      text-align: center;
+      padding: 20px 0 10px;
+      color: #6b7280;
+      font-size: 12px;
+    }
+    .no-session-msg .emoji { font-size: 28px; display: block; margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-icon">🔬</div>
+    <div>
+      <div class="header-title">Market Research Tracker</div>
+      <div class="header-sub">Session Monitor</div>
+    </div>
+  </div>
+
+  <div class="body">
+    <!-- Status card -->
+    <div class="card">
+      <div class="status-row">
+        <div class="status-dot idle" id="dot"></div>
+        <div class="status-label idle" id="statusLabel">Checking...</div>
+      </div>
+
+      <!-- Session details (shown when recording) -->
+      <div class="info-grid" id="sessionDetails" style="display:none">
+        <div class="info-row">
+          <span class="info-key">Duration</span>
+          <span class="info-val timer" id="durationEl">00:00</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">Session ID</span>
+          <span class="info-val" id="sessionIdEl">—</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">Survey ID</span>
+          <span class="info-val" id="surveyIdEl">—</span>
+        </div>
+      </div>
+
+      <!-- No session message -->
+      <div class="no-session-msg" id="noSessionMsg" style="display:none">
+        <span class="emoji">💤</span>
+        No active recording session.<br>Use the survey platform to start.
+      </div>
+    </div>
+
+    <!-- Live stats (shown when recording) -->
+    <div class="stats-grid" id="statsGrid" style="display:none">
+      <div class="stat-box">
+        <div class="stat-num" id="statPages">0</div>
+        <div class="stat-lbl">Pages</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num" id="statLogs">0</div>
+        <div class="stat-lbl">Logs</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num" id="statEvents">0</div>
+        <div class="stat-lbl">Events</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">Market Research Suite v1.0 &nbsp;•&nbsp; Internal Use Only</div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
