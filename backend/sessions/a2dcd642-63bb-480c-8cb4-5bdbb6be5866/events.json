@@ -1,0 +1,298 @@
+[
+  {
+    "type": "scroll",
+    "scrollY": 743,
+    "scrollDepthPercent": 54,
+    "timestamp": 1783115189267,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T21:46:29.269Z"
+  },
+  {
+    "type": "click",
+    "x": 371,
+    "y": 144,
+    "target": {
+      "tag": "div",
+      "id": null,
+      "classes": [
+        "col-md-6"
+      ],
+      "text": "Name of Participant:",
+      "href": null
+    },
+    "timestamp": 1783115189508,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T21:46:29.509Z"
+  },
+  {
+    "type": "click",
+    "x": 337,
+    "y": 130,
+    "target": {
+      "tag": "input",
+      "id": null,
+      "classes": [
+        "form-control",
+        "participant"
+      ],
+      "text": null,
+      "href": null
+    },
+    "timestamp": 1783115190474,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T21:46:30.479Z"
+  },
+  {
+    "type": "input_change",
+    "target": {
+      "tag": "input",
+      "type": "text",
+      "name": "participant",
+      "id": null
+    },
+    "timestamp": 1783115193974,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T21:46:33.976Z"
+  },
+  {
+    "type": "click",
+    "x": 736,
+    "y": 127,
+    "target": {
+      "tag": "input",
+      "id": null,
+      "classes": [
+        "form-control",
+        "mobile"
+      ],
+      "text": null,
+      "href": null
+    },
+    "timestamp": 1783115194057,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T21:46:34.060Z"
+  },
+  {
+    "type": "input_change",
+    "target": {
+      "tag": "input",
+      "type": "text",
+      "name": "mobile",
+      "id": null
+    },
+    "timestamp": 1783115197858,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T21:46:37.859Z"
+  },
+  {
+    "type": "click",
+    "x": 350,
+    "y": 215,
+    "target": {
+      "tag": "input",
+      "id": null,
+      "classes": [
+        "form-control",
+        "f_name"
+      ],
+      "text": null,
+      "href": null
+    },
+    "timestamp": 1783115197958,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T21:46:37.960Z"
+  },
+  {
+    "type": "input_change",
+    "target": {
+      "tag": "input",
+      "type": "text",
+      "name": "f_name",
+      "id": null
+    },
+    "timestamp": 1783115205124,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T21:46:45.126Z"
+  },
+  {
+    "type": "click",
+    "x": 690,
+    "y": 237,
+    "target": {
+      "tag": "input",
+      "id": null,
+      "classes": [
+        "form-control"
+      ],
+      "text": null,
+      "href": null
+    },
+    "timestamp": 1783115205224,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T21:46:45.226Z"
+  },
+  {
+    "type": "input_change",
+    "target": {
+      "tag": "input",
+      "type": "text",
+      "name": "f_mobile",
+      "id": null
+    },
+    "timestamp": 1783115212892,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T21:46:52.895Z"
+  },
+  {
+    "type": "click",
+    "x": 365,
+    "y": 334,
+    "target": {
+      "tag": "input",
+      "id": null,
+      "classes": [
+        "form-control",
+        "m_name"
+      ],
+      "text": null,
+      "href": null
+    },
+    "timestamp": 1783115212908,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T21:46:52.910Z"
+  },
+  {
+    "type": "input_change",
+    "target": {
+      "tag": "input",
+      "type": "text",
+      "name": "m_name",
+      "id": null
+    },
+    "timestamp": 1783115217358,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T21:46:57.359Z"
+  },
+  {
+    "type": "click",
+    "x": 715,
+    "y": 323,
+    "target": {
+      "tag": "select",
+      "id": null,
+      "classes": [
+        "form-control",
+        "parent_occupation"
+      ],
+      "text": "Select Occupation\nFarmer\nGroup A Or Class I (Gazetted)\nGroup B Or Class II (Gazetted)\nGroup B Or Class II (Non Gazetted)",
+      "href": null
+    },
+    "timestamp": 1783115217367,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T21:46:57.386Z"
+  },
+  {
+    "type": "input_change",
+    "target": {
+      "tag": "select",
+      "type": "select-one",
+      "name": "parent_occupation",
+      "id": null
+    },
+    "timestamp": 1783115218999,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T21:46:59.008Z"
+  },
+  {
+    "type": "click",
+    "x": 663,
+    "y": 302,
+    "target": {
+      "tag": "select",
+      "id": null,
+      "classes": [
+        "form-control",
+        "parent_occupation"
+      ],
+      "text": "Select Occupation\nFarmer\nGroup A Or Class I (Gazetted)\nGroup B Or Class II (Gazetted)\nGroup B Or Class II (Non Gazetted)",
+      "href": null
+    },
+    "timestamp": 1783115218999,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T21:46:59.011Z"
+  },
+  {
+    "type": "click",
+    "x": 420,
+    "y": 409,
+    "target": {
+      "tag": "select",
+      "id": null,
+      "classes": [
+        "form-control",
+        "groupNo"
+      ],
+      "text": "Select Age Group\nUnder 12\nUnder 14\nUnder 16\nUnder 19\nUnder 23",
+      "href": null
+    },
+    "timestamp": 1783115219901,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T21:46:59.919Z"
+  },
+  {
+    "type": "input_change",
+    "target": {
+      "tag": "select",
+      "type": "select-one",
+      "name": "groupNo",
+      "id": null
+    },
+    "timestamp": 1783115221018,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T21:47:01.023Z"
+  },
+  {
+    "type": "click",
+    "x": 112,
+    "y": 388,
+    "target": {
+      "tag": "select",
+      "id": null,
+      "classes": [
+        "form-control",
+        "groupNo"
+      ],
+      "text": "Select Age Group\nUnder 12\nUnder 14\nUnder 16\nUnder 19\nUnder 23",
+      "href": null
+    },
+    "timestamp": 1783115221018,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T21:47:01.026Z"
+  },
+  {
+    "type": "scroll",
+    "scrollY": 1407,
+    "scrollDepthPercent": 100,
+    "timestamp": 1783115225551,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T21:47:05.553Z"
+  },
+  {
+    "type": "click",
+    "x": 679,
+    "y": 341,
+    "target": {
+      "tag": "button",
+      "id": null,
+      "classes": [
+        "record-btn",
+        "stop"
+      ],
+      "text": "⏹\nStop Recording\nClick to stop",
+      "href": null
+    },
+    "timestamp": 1783115236125,
+    "pageUrl": "http://localhost:5173/",
+    "receivedAt": "2026-07-03T21:47:16.128Z"
+  }
+]

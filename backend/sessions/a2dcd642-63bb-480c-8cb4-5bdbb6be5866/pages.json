@@ -1,0 +1,50 @@
+[
+  {
+    "url": "https://tool.realsays.com/",
+    "domain": "tool.realsays.com",
+    "title": "platform",
+    "referrer": "",
+    "entryTime": 1783114985877,
+    "timestamp": 1783115183220,
+    "retroactive": true,
+    "receivedAt": "2026-07-03T21:46:23.222Z"
+  },
+  {
+    "url": "http://localhost:5173/",
+    "domain": "localhost",
+    "title": "Market Research — Recording Session",
+    "referrer": "",
+    "entryTime": 1783114974009,
+    "timestamp": 1783115183220,
+    "retroactive": true,
+    "receivedAt": "2026-07-03T21:46:23.225Z"
+  },
+  {
+    "url": "https://dlcl.in/registration",
+    "domain": "dlcl.in",
+    "title": "Delhi Li’l Cricket League. India’s No 01 Performance based Cricket League",
+    "referrer": "https://www.google.com/",
+    "entryTime": 1783115172380,
+    "timestamp": 1783115183220,
+    "retroactive": true,
+    "receivedAt": "2026-07-03T21:46:23.227Z"
+  },
+  {
+    "type": "html_snapshot",
+    "url": "http://localhost:5173/",
+    "domain": "localhost",
+    "title": "Market Research — Recording Session",
+    "timestamp": 1783115183521,
+    "timing": {
+      "domReady": 343,
+      "fullLoad": 350,
+      "domInteractive": 56,
+      "responseEnd": 41,
+      "firstByte": 41,
+      "transferSize": 300
+    },
+    "snapshotFile": "1783115183521_localhost.html",
+    "htmlSizeKB": 20,
+    "receivedAt": "2026-07-03T21:46:23.526Z"
+  }
+]

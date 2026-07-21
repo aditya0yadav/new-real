@@ -218,6 +218,34 @@ router.post('/:id/event', (req, res) => {
   res.json({ ok: true });
 });
 
+// POST /api/session/:id/environment — browser/device/IP snapshot
+router.post('/:id/environment', (req, res) => {
+  const sessionDir = getSessionDir(req.params.id);
+  if (!fs.existsSync(sessionDir)) return res.status(404).json({ error: 'Session not found' });
+
+  const env = { ...req.body, receivedAt: new Date().toISOString() };
+  writeJSON(path.join(sessionDir, 'environment.json'), env);
+
+  // Also store key fields in session.json for quick access
+  const session = readJSON(path.join(sessionDir, 'session.json'));
+  if (session) {
+    session.environment = {
+      ip:        env.ip || null,
+      city:      env.ipData?.city || null,
+      country:   env.ipData?.country || null,
+      timezone:  env.timezone || null,
+      browser:   env.userAgent || null,
+      screen:    env.screen ? `${env.screen.width}x${env.screen.height}` : null,
+      language:  env.language || null,
+      network:   env.network?.effectiveType || null,
+    };
+    writeJSON(path.join(sessionDir, 'session.json'), session);
+  }
+
+  console.log(`🌍 Environment: ${req.params.id.substring(0, 8)}... | IP: ${env.ip || '?'} | TZ: ${env.timezone || '?'} | ${env.screen?.width}x${env.screen?.height}`);
+  res.json({ ok: true });
+});
+
 // POST /api/session/:id/chunk — video chunk (multipart/form-data)
 router.post('/:id/chunk', upload.single('video'), (req, res) => {
   const sessionDir = getSessionDir(req.params.id);
@@ -268,10 +296,75 @@ router.post('/:id/end', (req, res) => {
     console.log(`   Snapshots : ${session.snapshotCount}`);
     console.log(`   Video     : ${session.videoChunks} chunks (${Math.round((session.videoSizeBytes || 0) / 1024)}KB)\n`);
 
+    // Trigger python extraction pipeline in background
+    const analyzerScript = path.join(__dirname, '../../../analyzer/extract.py');
+    const pythonCmd = `python3 "${analyzerScript}" "${req.params.id}" "${SESSIONS_DIR}"`;
+    
+    const { exec } = require('child_process');
+    exec(pythonCmd, (error, stdout, stderr) => {
+      if (error) {
+        console.error(`[Analyzer Error] Failed to run pipeline for ${req.params.id}: ${error.message}`);
+        return;
+      }
+      console.log(`[Analyzer Success] Pipeline finished for session ${req.params.id}.\nStdout:\n${stdout}`);
+    });
+
     res.json({ ok: true, session });
   } else {
     res.status(404).json({ error: 'Session not found' });
   }
+});
+// GET /api/session/:id/analysis — get analysis.json if it exists
+router.get('/:id/analysis', (req, res) => {
+  const sessionDir = getSessionDir(req.params.id);
+  if (!fs.existsSync(sessionDir)) return res.status(404).json({ error: 'Session not found' });
+
+  const analysisPath = path.join(sessionDir, 'analysis.json');
+  const logPath = path.join(sessionDir, 'analysis.log');
+  
+  const analysis = readJSON(analysisPath);
+  let logs = '';
+  if (fs.existsSync(logPath)) {
+    try { logs = fs.readFileSync(logPath, 'utf8'); }
+    catch (_) {}
+  }
+  
+  if (analysis) {
+    res.json({ found: true, analysis, logs });
+  } else {
+    res.json({ found: false });
+  }
+});
+
+// POST /api/session/:id/analyze — trigger python analysis and return analysis.json
+router.post('/:id/analyze', (req, res) => {
+  const sessionDir = getSessionDir(req.params.id);
+  if (!fs.existsSync(sessionDir)) return res.status(404).json({ error: 'Session not found' });
+
+  const analyzerScript = path.join(__dirname, '../../../analyzer/extract.py');
+  const pythonCmd = `python3 "${analyzerScript}" "${req.params.id}" "${SESSIONS_DIR}"`;
+
+  const { exec } = require('child_process');
+  exec(pythonCmd, (error, stdout, stderr) => {
+    const logPath = path.join(sessionDir, 'analysis.log');
+    const fullLog = stdout + (stderr ? '\n' + stderr : '');
+    try { fs.writeFileSync(logPath, fullLog, 'utf8'); }
+    catch (_) {}
+
+    if (error) {
+      console.error(`[Analyzer Error] Failed to run pipeline: ${error.message}`);
+      return res.status(500).json({ error: `Pipeline failed: ${error.message}`, logs: fullLog });
+    }
+    
+    const analysisPath = path.join(sessionDir, 'analysis.json');
+    const analysis = readJSON(analysisPath);
+    
+    if (analysis) {
+      res.json({ success: true, analysis, logs: fullLog });
+    } else {
+      res.status(500).json({ error: 'Pipeline finished but analysis.json was not found', logs: fullLog });
+    }
+  });
 });
 
 // DELETE /api/session/:id

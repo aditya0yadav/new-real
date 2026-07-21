@@ -1,0 +1,83 @@
+{
+  "capturedAt": "2026-07-03T22:52:44.194Z",
+  "pageUrl": "http://localhost:5173/",
+  "timezone": "Asia/Calcutta",
+  "timezoneOffset": -330,
+  "localTime": "04/07/2026, 04:22:44",
+  "language": "en-GB",
+  "languages": [
+    "en-GB",
+    "en-US",
+    "en"
+  ],
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+  "platform": "MacIntel",
+  "vendor": "Google Inc.",
+  "cookieEnabled": true,
+  "doNotTrack": null,
+  "onLine": true,
+  "javaEnabled": false,
+  "screen": {
+    "width": 1280,
+    "height": 832,
+    "availWidth": 1280,
+    "availHeight": 723,
+    "colorDepth": 30,
+    "pixelDepth": 30,
+    "pixelRatio": 2,
+    "orientation": "landscape-primary"
+  },
+  "viewport": {
+    "width": 1280,
+    "height": 636
+  },
+  "hardware": {
+    "cpuCores": 10,
+    "deviceMemory": 16,
+    "maxTouchPoints": 0
+  },
+  "network": {
+    "effectiveType": "4g",
+    "downlink": 10,
+    "rtt": 100,
+    "saveData": false,
+    "type": null
+  },
+  "pagePerformance": {
+    "dnsLookup": 0,
+    "tcpConnect": 0,
+    "tlsHandshake": 0,
+    "timeToFirstByte": 31,
+    "downloadTime": 0,
+    "domParsing": 15,
+    "domReady": 343,
+    "fullPageLoad": 350,
+    "transferSizeKB": 0,
+    "cachedLoad": false
+  },
+  "storage": {
+    "usedMB": 0,
+    "quotaMB": 10240
+  },
+  "ip": "103.237.158.179",
+  "ipData": {
+    "ip": "103.237.158.179",
+    "city": "New Delhi",
+    "region": "National Capital Territory of Delhi",
+    "country": "India",
+    "countryCode": "IN",
+    "postal": "110002",
+    "latitude": 28.6327,
+    "longitude": 77.2198,
+    "timezone": "Asia/Kolkata",
+    "isp": "Skymax Broadband Services Pvt. Ltd.",
+    "asn": "AS132934"
+  },
+  "battery": {
+    "level": 31,
+    "charging": false,
+    "chargingTime": null,
+    "dischargingTime": 18480
+  },
+  "receivedAt": "2026-07-03T22:52:44.651Z"
+}

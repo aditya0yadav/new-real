@@ -1,0 +1,114 @@
+{
+  "sessionId": "1ba4cebe-9ee1-4c86-a009-d05f07cbc586",
+  "analyzedAt": "2026-07-03T23:30:35.656571Z",
+  "pages": [
+    {
+      "url": "https://dlcl.in/registration",
+      "domain": "dlcl.in",
+      "pageTitle": "Delhi Li\u2019l Cricket League. India\u2019s No 01 Performance based Cricket League",
+      "snapshotFile": null,
+      "questions": [
+        {
+          "questionText": "South West",
+          "questionType": "text",
+          "options": [],
+          "selectedAnswer": "",
+          "confidence": "high",
+          "source": "vision",
+          "elementId": null,
+          "reasoning": "No text entered"
+        },
+        {
+          "questionText": "Pin Code",
+          "questionType": "text",
+          "options": [],
+          "selectedAnswer": "110078",
+          "confidence": "high",
+          "source": "vision",
+          "elementId": null,
+          "reasoning": "Text entered in the input box"
+        },
+        {
+          "questionText": "D.O.B.",
+          "questionType": "text",
+          "options": [],
+          "selectedAnswer": "20/09/2005",
+          "confidence": "high",
+          "source": "vision",
+          "elementId": null,
+          "reasoning": "Text entered in the input box"
+        },
+        {
+          "questionText": "Game Format",
+          "questionType": "dropdown",
+          "options": [
+            "One Day",
+            "One Day"
+          ],
+          "selectedAnswer": "One Day",
+          "confidence": "high",
+          "source": "vision",
+          "elementId": null,
+          "reasoning": "Dropdown selected"
+        },
+        {
+          "questionText": "Gender",
+          "questionType": "dropdown",
+          "options": [
+            "Male",
+            "Female"
+          ],
+          "selectedAnswer": "Male",
+          "confidence": "high",
+          "source": "vision",
+          "elementId": null,
+          "reasoning": "Dropdown selected"
+        },
+        {
+          "questionText": "Select Your Trial Place",
+          "questionType": "dropdown",
+          "options": [
+            "Delhi (NCR)"
+          ],
+          "selectedAnswer": "Delhi (NCR)",
+          "confidence": "high",
+          "source": "vision",
+          "elementId": null,
+          "reasoning": "Dropdown selected"
+        },
+        {
+          "questionText": "Whatsapp Contact No.",
+          "questionType": "text",
+          "options": [],
+          "selectedAnswer": "8920735656",
+          "confidence": "high",
+          "source": "vision",
+          "elementId": null,
+          "reasoning": "Text entered in the input box"
+        },
+        {
+          "questionText": "Registration Fee",
+          "questionType": "text",
+          "options": [],
+          "selectedAnswer": "500",
+          "confidence": "high",
+          "source": "vision",
+          "elementId": null,
+          "reasoning": "Text entered in the input box"
+        }
+      ]
+    },
+    {
+      "url": "https://tool.realsays.com/",
+      "domain": "tool.realsays.com",
+      "pageTitle": "platform",
+      "snapshotFile": null,
+      "questions": []
+    }
+  ],
+  "summary": {
+    "totalQuestions": 8,
+    "answeredQuestions": 7,
+    "completionRate": "87.5%"
+  }
+}

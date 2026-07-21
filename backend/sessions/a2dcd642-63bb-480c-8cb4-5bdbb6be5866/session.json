@@ -1,0 +1,26 @@
+{
+  "sessionId": "a2dcd642-63bb-480c-8cb4-5bdbb6be5866",
+  "surveyId": "demo-survey-001",
+  "surveyUrl": "https://example.com/survey",
+  "status": "completed",
+  "startTime": "2026-07-03T21:46:23.216Z",
+  "endTime": "2026-07-03T21:47:17.635Z",
+  "duration": 54,
+  "pageCount": 3,
+  "logCount": 0,
+  "eventCount": 20,
+  "videoChunks": 11,
+  "videoSizeBytes": 11705992,
+  "snapshotCount": 1,
+  "lastPageUrl": "https://dlcl.in/registration",
+  "environment": {
+    "ip": "103.237.158.179",
+    "city": "New Delhi",
+    "country": "India",
+    "timezone": "Asia/Calcutta",
+    "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "screen": "1280x832",
+    "language": "en-GB",
+    "network": "4g"
+  }
+}

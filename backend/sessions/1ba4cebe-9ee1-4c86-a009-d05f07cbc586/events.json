@@ -1,0 +1,1031 @@
+[
+  {
+    "type": "click",
+    "x": 815,
+    "y": 292,
+    "target": {
+      "tag": "div",
+      "id": null,
+      "classes": [
+        "col-md-6"
+      ],
+      "text": "Registration For:\nOne Day Players Promotion League)\nT20 Champions League\nOne Day & T20 Both League",
+      "href": null
+    },
+    "timestamp": 1783119167060,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:52:47.098Z"
+  },
+  {
+    "type": "scroll",
+    "scrollY": 878,
+    "scrollDepthPercent": 62,
+    "timestamp": 1783119171020,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:52:51.038Z"
+  },
+  {
+    "type": "scroll",
+    "scrollY": 701,
+    "scrollDepthPercent": 50,
+    "timestamp": 1783119172683,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:52:52.688Z"
+  },
+  {
+    "type": "click",
+    "x": 302,
+    "y": 166,
+    "target": {
+      "tag": "input",
+      "id": null,
+      "classes": [
+        "form-control",
+        "participant"
+      ],
+      "text": null,
+      "href": null
+    },
+    "timestamp": 1783119172802,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:52:52.816Z"
+  },
+  {
+    "type": "click",
+    "x": 794,
+    "y": 173,
+    "target": {
+      "tag": "input",
+      "id": null,
+      "classes": [
+        "form-control",
+        "mobile"
+      ],
+      "text": null,
+      "href": null
+    },
+    "timestamp": 1783119178108,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:52:58.118Z"
+  },
+  {
+    "type": "click",
+    "x": 785,
+    "y": 280,
+    "target": {
+      "tag": "input",
+      "id": null,
+      "classes": [
+        "form-control"
+      ],
+      "text": null,
+      "href": null
+    },
+    "timestamp": 1783119178824,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:52:58.827Z"
+  },
+  {
+    "type": "click",
+    "x": 386,
+    "y": 289,
+    "target": {
+      "tag": "input",
+      "id": null,
+      "classes": [
+        "form-control",
+        "f_name"
+      ],
+      "text": null,
+      "href": null
+    },
+    "timestamp": 1783119179774,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:52:59.780Z"
+  },
+  {
+    "type": "click",
+    "x": 399,
+    "y": 376,
+    "target": {
+      "tag": "input",
+      "id": null,
+      "classes": [
+        "form-control",
+        "m_name"
+      ],
+      "text": null,
+      "href": null
+    },
+    "timestamp": 1783119180942,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:00.948Z"
+  },
+  {
+    "type": "scroll",
+    "scrollY": 876,
+    "scrollDepthPercent": 62,
+    "timestamp": 1783119181901,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:01.905Z"
+  },
+  {
+    "type": "click",
+    "x": 276,
+    "y": 281,
+    "target": {
+      "tag": "select",
+      "id": null,
+      "classes": [
+        "form-control",
+        "groupNo"
+      ],
+      "text": "Select Age Group\nUnder 12\nUnder 14\nUnder 16\nUnder 19\nUnder 23",
+      "href": null
+    },
+    "timestamp": 1783119182219,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:02.456Z"
+  },
+  {
+    "type": "click",
+    "x": 845,
+    "y": 279,
+    "target": {
+      "tag": "select",
+      "id": null,
+      "classes": [
+        "form-control",
+        "uniform_size"
+      ],
+      "text": "Select Uniform Size\n34\n36\n38\n40\n42",
+      "href": null
+    },
+    "timestamp": 1783119183767,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:03.796Z"
+  },
+  {
+    "type": "input_change",
+    "target": {
+      "tag": "select",
+      "type": "select-one",
+      "name": "uniform_size",
+      "id": null
+    },
+    "timestamp": 1783119185011,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:05.041Z"
+  },
+  {
+    "type": "click",
+    "x": 663,
+    "y": 255,
+    "target": {
+      "tag": "select",
+      "id": null,
+      "classes": [
+        "form-control",
+        "uniform_size"
+      ],
+      "text": "Select Uniform Size\n34\n36\n38\n40\n42",
+      "href": null
+    },
+    "timestamp": 1783119185013,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:05.043Z"
+  },
+  {
+    "type": "click",
+    "x": 404,
+    "y": 378,
+    "target": {
+      "tag": "select",
+      "id": null,
+      "classes": [
+        "form-control",
+        "category",
+        "cat-payment"
+      ],
+      "text": "Select Category\nBatsman\nBowler\nAll Rounder\nWK",
+      "href": null
+    },
+    "timestamp": 1783119185684,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:05.700Z"
+  },
+  {
+    "type": "input_change",
+    "target": {
+      "tag": "select",
+      "type": "select-one",
+      "name": "category",
+      "id": null
+    },
+    "timestamp": 1783119186902,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:06.938Z"
+  },
+  {
+    "type": "click",
+    "x": 112,
+    "y": 341,
+    "target": {
+      "tag": "select",
+      "id": null,
+      "classes": [
+        "form-control",
+        "category",
+        "cat-payment"
+      ],
+      "text": "Select Category\nBatsman\nBowler\nAll Rounder\nWK",
+      "href": null
+    },
+    "timestamp": 1783119186940,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:06.946Z"
+  },
+  {
+    "type": "click",
+    "x": 689,
+    "y": 382,
+    "target": {
+      "tag": "div",
+      "id": null,
+      "classes": [
+        "col-md-6"
+      ],
+      "text": "Category Type:\nSelect Category\nTop Order\nMiddle Order",
+      "href": null
+    },
+    "timestamp": 1783119187358,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:07.364Z"
+  },
+  {
+    "type": "click",
+    "x": 704,
+    "y": 369,
+    "target": {
+      "tag": "select",
+      "id": null,
+      "classes": [
+        "form-control",
+        "category_type"
+      ],
+      "text": "Select Category\nTop Order\nMiddle Order",
+      "href": null
+    },
+    "timestamp": 1783119187751,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:07.792Z"
+  },
+  {
+    "type": "input_change",
+    "target": {
+      "tag": "select",
+      "type": "select-one",
+      "name": "cattype",
+      "id": null
+    },
+    "timestamp": 1783119188795,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:08.825Z"
+  },
+  {
+    "type": "click",
+    "x": 663,
+    "y": 341,
+    "target": {
+      "tag": "select",
+      "id": null,
+      "classes": [
+        "form-control",
+        "category_type"
+      ],
+      "text": "Select Category\nTop Order\nMiddle Order",
+      "href": null
+    },
+    "timestamp": 1783119188799,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:08.831Z"
+  },
+  {
+    "type": "click",
+    "x": 435,
+    "y": 419,
+    "target": {
+      "tag": "input",
+      "id": null,
+      "classes": [
+        "form-control",
+        "email"
+      ],
+      "text": null,
+      "href": null
+    },
+    "timestamp": 1783119189724,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:09.760Z"
+  },
+  {
+    "type": "input_change",
+    "target": {
+      "tag": "input",
+      "type": "email",
+      "name": "email",
+      "id": null
+    },
+    "timestamp": 1783119195975,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:15.984Z"
+  },
+  {
+    "type": "click",
+    "x": 716,
+    "y": 408,
+    "target": {
+      "tag": "input",
+      "id": null,
+      "classes": [
+        "form-control",
+        "address"
+      ],
+      "text": null,
+      "href": null
+    },
+    "timestamp": 1783119196058,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:16.060Z"
+  },
+  {
+    "type": "input_change",
+    "target": {
+      "tag": "input",
+      "type": "text",
+      "name": "address",
+      "id": null
+    },
+    "timestamp": 1783119201008,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:21.017Z"
+  },
+  {
+    "type": "click",
+    "x": 488,
+    "y": 506,
+    "target": {
+      "tag": "input",
+      "id": null,
+      "classes": [
+        "form-control",
+        "district"
+      ],
+      "text": null,
+      "href": null
+    },
+    "timestamp": 1783119201108,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:21.111Z"
+  },
+  {
+    "type": "input_change",
+    "target": {
+      "tag": "input",
+      "type": "text",
+      "name": "district",
+      "id": null
+    },
+    "timestamp": 1783119203991,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:23.993Z"
+  },
+  {
+    "type": "click",
+    "x": 874,
+    "y": 490,
+    "target": {
+      "tag": "select",
+      "id": null,
+      "classes": [
+        "form-control",
+        "state"
+      ],
+      "text": "Select State\nAndaman and Nicobar Islands\nAndhra Pradesh\nArunachal Pradesh\nAssam\nBihar\nChandigarh\nChhattisgarh\nDadra and ",
+      "href": null
+    },
+    "timestamp": 1783119204000,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:24.128Z"
+  },
+  {
+    "type": "input_change",
+    "target": {
+      "tag": "select",
+      "type": "select-one",
+      "name": "state",
+      "id": null
+    },
+    "timestamp": 1783119206571,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:26.588Z"
+  },
+  {
+    "type": "click",
+    "x": 663,
+    "y": 475,
+    "target": {
+      "tag": "select",
+      "id": null,
+      "classes": [
+        "form-control",
+        "state"
+      ],
+      "text": "Select State\nAndaman and Nicobar Islands\nAndhra Pradesh\nArunachal Pradesh\nAssam\nBihar\nChandigarh\nChhattisgarh\nDadra and ",
+      "href": null
+    },
+    "timestamp": 1783119206571,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:26.590Z"
+  },
+  {
+    "type": "scroll",
+    "scrollY": 1097,
+    "scrollDepthPercent": 78,
+    "timestamp": 1783119207718,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:27.720Z"
+  },
+  {
+    "type": "click",
+    "x": 333,
+    "y": 396,
+    "target": {
+      "tag": "input",
+      "id": null,
+      "classes": [
+        "form-control",
+        "pincode"
+      ],
+      "text": null,
+      "href": null
+    },
+    "timestamp": 1783119207874,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:27.877Z"
+  },
+  {
+    "type": "input_change",
+    "target": {
+      "tag": "input",
+      "type": "text",
+      "name": "pincode",
+      "id": null
+    },
+    "timestamp": 1783119210291,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:30.292Z"
+  },
+  {
+    "type": "click",
+    "x": 701,
+    "y": 403,
+    "target": {
+      "tag": "input",
+      "id": null,
+      "classes": [
+        "form-control",
+        "d_o_b"
+      ],
+      "text": null,
+      "href": null
+    },
+    "timestamp": 1783119210374,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:30.377Z"
+  },
+  {
+    "type": "click",
+    "x": 687,
+    "y": 402,
+    "target": {
+      "tag": "input",
+      "id": null,
+      "classes": [
+        "form-control",
+        "d_o_b"
+      ],
+      "text": null,
+      "href": null
+    },
+    "timestamp": 1783119211341,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:31.343Z"
+  },
+  {
+    "type": "input_change",
+    "target": {
+      "tag": "input",
+      "type": "date",
+      "name": "d_o_b",
+      "id": null
+    },
+    "timestamp": 1783119213319,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:33.322Z"
+  },
+  {
+    "type": "input_change",
+    "target": {
+      "tag": "input",
+      "type": "date",
+      "name": "d_o_b",
+      "id": null
+    },
+    "timestamp": 1783119213466,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:33.471Z"
+  },
+  {
+    "type": "input_change",
+    "target": {
+      "tag": "input",
+      "type": "date",
+      "name": "d_o_b",
+      "id": null
+    },
+    "timestamp": 1783119213612,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:33.619Z"
+  },
+  {
+    "type": "input_change",
+    "target": {
+      "tag": "input",
+      "type": "date",
+      "name": "d_o_b",
+      "id": null
+    },
+    "timestamp": 1783119213892,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:33.896Z"
+  },
+  {
+    "type": "click",
+    "x": 484,
+    "y": 418,
+    "target": {
+      "tag": "select",
+      "id": null,
+      "classes": [
+        "form-control",
+        "game_format"
+      ],
+      "text": "Select Game Format\nT20\nOne Day\nTest\nAll (One Day, Test & T20)",
+      "href": null
+    },
+    "timestamp": 1783119214867,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:34.871Z"
+  },
+  {
+    "type": "input_change",
+    "target": {
+      "tag": "select",
+      "type": "select-one",
+      "name": "game_format",
+      "id": null
+    },
+    "timestamp": 1783119215955,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:35.968Z"
+  },
+  {
+    "type": "click",
+    "x": 112,
+    "y": 408,
+    "target": {
+      "tag": "select",
+      "id": null,
+      "classes": [
+        "form-control",
+        "game_format"
+      ],
+      "text": "Select Game Format\nT20\nOne Day\nTest\nAll (One Day, Test & T20)",
+      "href": null
+    },
+    "timestamp": 1783119215955,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:35.971Z"
+  },
+  {
+    "type": "click",
+    "x": 692,
+    "y": 435,
+    "target": {
+      "tag": "select",
+      "id": null,
+      "classes": [
+        "form-control",
+        "gender"
+      ],
+      "text": "Select Gender\nMale\nFemale",
+      "href": null
+    },
+    "timestamp": 1783119216417,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:36.422Z"
+  },
+  {
+    "type": "input_change",
+    "target": {
+      "tag": "select",
+      "type": "select-one",
+      "name": "gender",
+      "id": null
+    },
+    "timestamp": 1783119217385,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:37.398Z"
+  },
+  {
+    "type": "click",
+    "x": 663,
+    "y": 408,
+    "target": {
+      "tag": "select",
+      "id": null,
+      "classes": [
+        "form-control",
+        "gender"
+      ],
+      "text": "Select Gender\nMale\nFemale",
+      "href": null
+    },
+    "timestamp": 1783119217385,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:37.402Z"
+  },
+  {
+    "type": "click",
+    "x": 508,
+    "y": 507,
+    "target": {
+      "tag": "select",
+      "id": null,
+      "classes": [
+        "form-control",
+        "trial-place"
+      ],
+      "text": "Select Your Trial Place\nDelhi (NCR)\nBihar (Patna)\nUP (Lucknow)\nUP (Kanpur)\nRajasthan (Jaipur)\nJ&K (Jammu Kashmir)\nJharkh",
+      "href": null
+    },
+    "timestamp": 1783119218434,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:38.438Z"
+  },
+  {
+    "type": "input_change",
+    "target": {
+      "tag": "select",
+      "type": "select-one",
+      "name": "trial_place",
+      "id": null
+    },
+    "timestamp": 1783119219385,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:39.398Z"
+  },
+  {
+    "type": "click",
+    "x": 112,
+    "y": 494,
+    "target": {
+      "tag": "select",
+      "id": null,
+      "classes": [
+        "form-control",
+        "trial-place"
+      ],
+      "text": "Select Your Trial Place\nDelhi (NCR)\nBihar (Patna)\nUP (Lucknow)\nUP (Kanpur)\nRajasthan (Jaipur)\nJ&K (Jammu Kashmir)\nJharkh",
+      "href": null
+    },
+    "timestamp": 1783119219385,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:39.400Z"
+  },
+  {
+    "type": "click",
+    "x": 760,
+    "y": 396,
+    "target": {
+      "tag": "select",
+      "id": null,
+      "classes": [
+        "form-control",
+        "registration_for"
+      ],
+      "text": "One Day Players Promotion League)\nT20 Champions League\nOne Day & T20 Both League",
+      "href": null
+    },
+    "timestamp": 1783119220750,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:40.754Z"
+  },
+  {
+    "type": "scroll",
+    "scrollY": 1281,
+    "scrollDepthPercent": 91,
+    "timestamp": 1783119220767,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:40.768Z"
+  },
+  {
+    "type": "input_change",
+    "target": {
+      "tag": "select",
+      "type": "select-one",
+      "name": "registration_for",
+      "id": null
+    },
+    "timestamp": 1783119222235,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:42.247Z"
+  },
+  {
+    "type": "click",
+    "x": 663,
+    "y": 368,
+    "target": {
+      "tag": "select",
+      "id": null,
+      "classes": [
+        "form-control",
+        "registration_for"
+      ],
+      "text": "One Day Players Promotion League)\nT20 Champions League\nOne Day & T20 Both League",
+      "href": null
+    },
+    "timestamp": 1783119222235,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:42.248Z"
+  },
+  {
+    "type": "click",
+    "x": 333,
+    "y": 472,
+    "target": {
+      "tag": "input",
+      "id": null,
+      "classes": [
+        "form-control",
+        "whatsapp_contact_no"
+      ],
+      "text": null,
+      "href": null
+    },
+    "timestamp": 1783119222874,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:42.878Z"
+  },
+  {
+    "type": "scroll",
+    "scrollY": 1407,
+    "scrollDepthPercent": 100,
+    "timestamp": 1783119226950,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:46.952Z"
+  },
+  {
+    "type": "input_change",
+    "target": {
+      "tag": "input",
+      "type": "text",
+      "name": "whatsapp_contact_no",
+      "id": null
+    },
+    "timestamp": 1783119227760,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:47.764Z"
+  },
+  {
+    "type": "click",
+    "x": 367,
+    "y": 523,
+    "target": {
+      "tag": "div",
+      "id": null,
+      "classes": [
+        "col-md-12"
+      ],
+      "text": "Submit",
+      "href": null
+    },
+    "timestamp": 1783119227764,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:47.771Z"
+  },
+  {
+    "type": "click",
+    "x": 367,
+    "y": 474,
+    "target": {
+      "tag": "label",
+      "id": null,
+      "classes": [],
+      "text": " I understand that registration fee are non refundable. I have also read all other terms & conditions for participation ",
+      "href": null
+    },
+    "timestamp": 1783119228543,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:48.550Z"
+  },
+  {
+    "type": "click",
+    "x": 367,
+    "y": 474,
+    "target": {
+      "tag": "input",
+      "id": null,
+      "classes": [],
+      "text": null,
+      "href": null
+    },
+    "timestamp": 1783119228545,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:48.554Z"
+  },
+  {
+    "type": "input_change",
+    "target": {
+      "tag": "input",
+      "type": "checkbox",
+      "name": "term_and_condition",
+      "id": null
+    },
+    "timestamp": 1783119228546,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:48.556Z"
+  },
+  {
+    "type": "click",
+    "x": 367,
+    "y": 474,
+    "target": {
+      "tag": "label",
+      "id": null,
+      "classes": [],
+      "text": " I understand that registration fee are non refundable. I have also read all other terms & conditions for participation ",
+      "href": null
+    },
+    "timestamp": 1783119228675,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:48.678Z"
+  },
+  {
+    "type": "click",
+    "x": 367,
+    "y": 474,
+    "target": {
+      "tag": "input",
+      "id": null,
+      "classes": [],
+      "text": null,
+      "href": null
+    },
+    "timestamp": 1783119228676,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:48.681Z"
+  },
+  {
+    "type": "input_change",
+    "target": {
+      "tag": "input",
+      "type": "checkbox",
+      "name": "term_and_condition",
+      "id": null
+    },
+    "timestamp": 1783119228676,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:48.684Z"
+  },
+  {
+    "type": "click",
+    "x": 367,
+    "y": 474,
+    "target": {
+      "tag": "label",
+      "id": null,
+      "classes": [],
+      "text": " I understand that registration fee are non refundable. I have also read all other terms & conditions for participation ",
+      "href": null
+    },
+    "timestamp": 1783119228824,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:48.828Z"
+  },
+  {
+    "type": "click",
+    "x": 367,
+    "y": 474,
+    "target": {
+      "tag": "input",
+      "id": null,
+      "classes": [],
+      "text": null,
+      "href": null
+    },
+    "timestamp": 1783119228825,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:48.832Z"
+  },
+  {
+    "type": "input_change",
+    "target": {
+      "tag": "input",
+      "type": "checkbox",
+      "name": "term_and_condition",
+      "id": null
+    },
+    "timestamp": 1783119228825,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:48.833Z"
+  },
+  {
+    "type": "click",
+    "x": 367,
+    "y": 474,
+    "target": {
+      "tag": "label",
+      "id": null,
+      "classes": [],
+      "text": " I understand that registration fee are non refundable. I have also read all other terms & conditions for participation ",
+      "href": null
+    },
+    "timestamp": 1783119229175,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:49.181Z"
+  },
+  {
+    "type": "click",
+    "x": 367,
+    "y": 474,
+    "target": {
+      "tag": "input",
+      "id": null,
+      "classes": [],
+      "text": null,
+      "href": null
+    },
+    "timestamp": 1783119229176,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:49.186Z"
+  },
+  {
+    "type": "input_change",
+    "target": {
+      "tag": "input",
+      "type": "checkbox",
+      "name": "term_and_condition",
+      "id": null
+    },
+    "timestamp": 1783119229179,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:49.190Z"
+  },
+  {
+    "type": "click",
+    "x": 465,
+    "y": 532,
+    "target": {
+      "tag": "div",
+      "id": null,
+      "classes": [
+        "col-md-12"
+      ],
+      "text": "Submit",
+      "href": null
+    },
+    "timestamp": 1783119230041,
+    "pageUrl": "https://dlcl.in/registration",
+    "receivedAt": "2026-07-03T22:53:50.045Z"
+  },
+  {
+    "type": "click",
+    "x": 666,
+    "y": 357,
+    "target": {
+      "tag": "button",
+      "id": null,
+      "classes": [
+        "record-btn",
+        "stop"
+      ],
+      "text": "⏹\nStop Recording\nClick to stop",
+      "href": null
+    },
+    "timestamp": 1783119232608,
+    "pageUrl": "http://localhost:5173/",
+    "receivedAt": "2026-07-03T22:53:52.635Z"
+  }
+]

@@ -1,6 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+<html lang="en"><head>
+    <script type="module">import { injectIntoGlobalHook } from "/@react-refresh";
+injectIntoGlobalHook(window);
+window.$RefreshReg$ = () => {};
+window.$RefreshSig$ = () => (type) => type;</script>
+
+    <script type="module" src="/@vite/client"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Research — Recording Session</title>
+    <meta name="description" content="Internal session recording bridge for market research surveys">
+    <style>
+      body { margin: 0; background: #06060f; }
+    </style>
+  <style type="text/css" data-vite-dev-id="/Users/aditya/Documents/new real/bridge-page/src/App.css">@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
 /* ── Reset & Base ─────────────────────────────────────────── */
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -42,6 +58,7 @@ html, body, #root {
 }
 
 /* ── Layout ───────────────────────────────────────────────── */
+
 .app {
   min-height: 100vh;
   display: flex;
@@ -54,6 +71,7 @@ html, body, #root {
 }
 
 /* Ambient background glow */
+
 .app::before {
   content: '';
   position: fixed;
@@ -71,6 +89,7 @@ html, body, #root {
 }
 
 /* ── Header ───────────────────────────────────────────────── */
+
 .app-header {
   width: 100%;
   max-width: 720px;
@@ -101,6 +120,7 @@ html, body, #root {
 }
 
 .logo-text { font-size: 16px; font-weight: 700; color: var(--text-primary); }
+
 .logo-sub  { font-size: 11px; color: var(--text-muted); margin-top: 1px; font-weight: 400; }
 
 .header-badge {
@@ -115,6 +135,7 @@ html, body, #root {
 }
 
 /* ── Main Content ─────────────────────────────────────────── */
+
 .main {
   width: 100%;
   max-width: 720px;
@@ -126,6 +147,7 @@ html, body, #root {
 }
 
 /* ── Cards ────────────────────────────────────────────────── */
+
 .card {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -146,6 +168,7 @@ html, body, #root {
 }
 
 /* ── Extension Status Card ────────────────────────────────── */
+
 .ext-status {
   display: flex;
   align-items: center;
@@ -162,15 +185,23 @@ html, body, #root {
   font-size: 22px;
   flex-shrink: 0;
 }
+
 .ext-icon.detected { background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.25); }
+
 .ext-icon.missing  { background: rgba(239, 68, 68, 0.1);  border: 1px solid rgba(239, 68, 68, 0.25); }
+
 .ext-icon.checking { background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.2); }
 
 .ext-info { flex: 1; }
+
 .ext-label { font-size: 15px; font-weight: 600; margin-bottom: 3px; }
+
 .ext-label.detected { color: var(--emerald); }
+
 .ext-label.missing  { color: var(--red); }
+
 .ext-label.checking { color: var(--indigo-light); }
+
 .ext-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
 
 .ext-version {
@@ -184,17 +215,21 @@ html, body, #root {
 }
 
 /* ── Survey Info Card ─────────────────────────────────────── */
+
 .survey-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
 }
+
 .survey-field {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
+
 .field-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-muted); font-weight: 600; }
+
 .field-value {
   font-size: 13px;
   font-weight: 500;
@@ -203,7 +238,9 @@ html, body, #root {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 .field-value.mono { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--indigo-light); }
+
 .field-value.url  {
   color: var(--sky);
   font-size: 12px;
@@ -212,9 +249,11 @@ html, body, #root {
   text-decoration-color: transparent;
   transition: text-decoration-color 0.2s;
 }
+
 .field-value.url:hover { text-decoration-color: var(--sky); }
 
 /* ── Recording Controls Card ──────────────────────────────── */
+
 .controls-card {
   display: flex;
   flex-direction: column;
@@ -224,6 +263,7 @@ html, body, #root {
 }
 
 /* Big recording button */
+
 .record-btn {
   position: relative;
   width: 180px;
@@ -246,6 +286,7 @@ html, body, #root {
   background: linear-gradient(135deg, #6366f1, #8b5cf6);
   box-shadow: 0 8px 40px rgba(99, 102, 241, 0.5), 0 0 0 0 rgba(99, 102, 241, 0.3);
 }
+
 .record-btn.start:hover {
   transform: scale(1.04);
   box-shadow: 0 12px 50px rgba(99, 102, 241, 0.65), 0 0 0 0 rgba(99, 102, 241, 0.4);
@@ -255,6 +296,7 @@ html, body, #root {
   background: linear-gradient(135deg, #dc2626, #ef4444);
   box-shadow: 0 8px 40px rgba(239, 68, 68, 0.5);
 }
+
 .record-btn.stop:hover {
   transform: scale(1.04);
   box-shadow: 0 12px 50px rgba(239, 68, 68, 0.65);
@@ -268,6 +310,7 @@ html, body, #root {
 }
 
 /* Pulse ring animation when recording */
+
 .record-btn.stop::before,
 .record-btn.stop::after {
   content: '';
@@ -277,6 +320,7 @@ html, body, #root {
   border: 2px solid rgba(239, 68, 68, 0.4);
   animation: pulse-ring 2s ease-out infinite;
 }
+
 .record-btn.stop::after { animation-delay: 1s; }
 
 @keyframes pulse-ring {
@@ -285,10 +329,13 @@ html, body, #root {
 }
 
 .btn-icon { font-size: 42px; }
+
 .btn-label { font-size: 13px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+
 .btn-sub { font-size: 10px; color: rgba(255,255,255,0.65); }
 
 /* ── Timer ────────────────────────────────────────────────── */
+
 .timer {
   font-family: 'JetBrains Mono', monospace;
   font-size: 48px;
@@ -297,6 +344,7 @@ html, body, #root {
   letter-spacing: 2px;
   animation: flicker 2s ease-in-out infinite;
 }
+
 .timer.idle { color: var(--text-muted); animation: none; }
 
 @keyframes flicker {
@@ -305,6 +353,7 @@ html, body, #root {
 }
 
 /* Status message */
+
 .status-msg {
   font-size: 13px;
   color: var(--text-secondary);
@@ -312,11 +361,15 @@ html, body, #root {
   max-width: 300px;
   line-height: 1.6;
 }
+
 .status-msg .highlight { color: var(--indigo-light); font-weight: 600; }
+
 .status-msg .success   { color: var(--emerald); font-weight: 600; }
+
 .status-msg .error     { color: var(--red); font-weight: 600; }
 
 /* ── Stats Bar ────────────────────────────────────────────── */
+
 .stats-bar {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -344,10 +397,13 @@ html, body, #root {
   font-family: 'JetBrains Mono', monospace;
   line-height: 1;
 }
+
 .stat-num.red { color: var(--red); }
+
 .stat-label { font-size: 10px; color: var(--text-muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.6px; }
 
 /* ── Session ID banner ────────────────────────────────────── */
+
 .session-banner {
   background: rgba(99, 102, 241, 0.06);
   border: 1px solid rgba(99, 102, 241, 0.2);
@@ -358,7 +414,9 @@ html, body, #root {
   justify-content: space-between;
   gap: 12px;
 }
+
 .session-banner-label { font-size: 11px; color: var(--text-muted); white-space: nowrap; }
+
 .session-banner-id {
   font-family: 'JetBrains Mono', monospace;
   font-size: 12px;
@@ -369,6 +427,7 @@ html, body, #root {
 }
 
 /* ── Spinner ─────────────────────────────────────────────── */
+
 .spinner {
   width: 20px;
   height: 20px;
@@ -377,15 +436,21 @@ html, body, #root {
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
+
 @keyframes spin { to { transform: rotate(360deg); } }
 
 /* ── Utility ──────────────────────────────────────────────── */
+
 .flex { display: flex; }
+
 .items-center { align-items: center; }
+
 .gap-2 { gap: 8px; }
+
 .w-full { width: 100%; }
 
 /* ── Tabs Navigation ──────────────────────────────────────── */
+
 .tabs-nav {
   display: flex;
   gap: 8px;
@@ -396,6 +461,7 @@ html, body, #root {
   width: 100%;
   margin-bottom: 8px;
 }
+
 .tab-btn {
   flex: 1;
   background: transparent;
@@ -412,10 +478,12 @@ html, body, #root {
   justify-content: center;
   gap: 8px;
 }
+
 .tab-btn:hover {
   color: var(--text-primary);
   background: rgba(255, 255, 255, 0.03);
 }
+
 .tab-btn.active {
   color: #fff;
   background: linear-gradient(135deg, var(--indigo), var(--violet));
@@ -423,6 +491,7 @@ html, body, #root {
 }
 
 /* ── Admin Dashboard Columns ──────────────────────────────── */
+
 .admin-grid {
   display: grid;
   grid-template-columns: 280px 1fr;
@@ -430,17 +499,20 @@ html, body, #root {
   width: 100%;
   align-items: start;
 }
+
 @media (max-width: 768px) {
   .admin-grid { grid-template-columns: 1fr; }
 }
 
 /* ── Session Sidebar ──────────────────────────────────────── */
+
 .sidebar {
   display: flex;
   flex-direction: column;
   gap: 12px;
   max-height: 700px;
 }
+
 .search-input {
   width: 100%;
   background: var(--bg-surface);
@@ -452,9 +524,11 @@ html, body, #root {
   outline: none;
   transition: border-color 0.2s;
 }
+
 .search-input:focus {
   border-color: var(--indigo);
 }
+
 .session-list {
   display: flex;
   flex-direction: column;
@@ -462,6 +536,7 @@ html, body, #root {
   overflow-y: auto;
   padding-right: 4px;
 }
+
 .session-item {
   background: var(--bg-surface);
   border: 1px solid var(--border);
@@ -471,30 +546,36 @@ html, body, #root {
   transition: all 0.2s;
   text-align: left;
 }
+
 .session-item:hover {
   border-color: var(--border-light);
   background: var(--bg-card-hov);
 }
+
 .session-item.selected {
   border-color: var(--indigo);
   background: rgba(99, 102, 241, 0.05);
 }
+
 .session-item-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 6px;
 }
+
 .session-item-id {
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
   font-weight: 500;
   color: var(--indigo-light);
 }
+
 .session-item-date {
   font-size: 10px;
   color: var(--text-muted);
 }
+
 .session-item-survey {
   font-size: 12px;
   font-weight: 600;
@@ -504,6 +585,7 @@ html, body, #root {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 .session-item-meta {
   display: flex;
   gap: 12px;
@@ -512,11 +594,13 @@ html, body, #root {
 }
 
 /* ── Main Detail View ─────────────────────────────────────── */
+
 .detail-view {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
+
 .placeholder-card {
   text-align: center;
   padding: 80px 24px;
@@ -527,9 +611,11 @@ html, body, #root {
   align-items: center;
   gap: 12px;
 }
+
 .placeholder-icon { font-size: 40px; opacity: 0.5; }
 
 /* ── Verification Action Header ───────────────────────────── */
+
 .detail-header {
   display: flex;
   justify-content: space-between;
@@ -537,10 +623,12 @@ html, body, #root {
   flex-wrap: wrap;
   gap: 12px;
 }
+
 .header-actions {
   display: flex;
   gap: 8px;
 }
+
 .btn-primary {
   background: linear-gradient(135deg, var(--indigo), var(--violet));
   border: none;
@@ -555,7 +643,9 @@ html, body, #root {
   gap: 6px;
   transition: opacity 0.2s;
 }
+
 .btn-primary:hover { opacity: 0.9; }
+
 .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
 
 .btn-secondary {
@@ -569,18 +659,21 @@ html, body, #root {
   cursor: pointer;
   transition: all 0.2s;
 }
+
 .btn-secondary:hover {
   border-color: var(--border-light);
   color: var(--text-primary);
 }
 
 /* ── Extraction Q&A Cards ─────────────────────────────────── */
+
 .qa-grid {
   display: flex;
   flex-direction: column;
   gap: 14px;
   margin-top: 8px;
 }
+
 .qa-card {
   background: var(--bg-surface);
   border: 1px solid var(--border);
@@ -590,8 +683,11 @@ html, body, #root {
   position: relative;
   overflow: hidden;
 }
+
 .qa-card.confidence-high { border-left: 4px solid var(--emerald); }
+
 .qa-card.confidence-medium { border-left: 4px solid var(--amber); }
+
 .qa-card.confidence-low { border-left: 4px solid var(--red); }
 
 .qa-header {
@@ -601,17 +697,20 @@ html, body, #root {
   gap: 12px;
   margin-bottom: 12px;
 }
+
 .qa-title {
   font-size: 14px;
   font-weight: 600;
   color: var(--text-primary);
   line-height: 1.4;
 }
+
 .qa-badges {
   display: flex;
   gap: 6px;
   align-items: center;
 }
+
 .badge {
   font-size: 9px;
   font-weight: 700;
@@ -620,8 +719,11 @@ html, body, #root {
   text-transform: uppercase;
   letter-spacing: 0.3px;
 }
+
 .badge-high { background: rgba(16, 185, 129, 0.1); color: var(--emerald); border: 1px solid rgba(16, 185, 129, 0.2); }
+
 .badge-medium { background: rgba(245, 158, 11, 0.1); color: var(--amber); border: 1px solid rgba(245, 158, 11, 0.2); }
+
 .badge-low { background: rgba(239, 68, 68, 0.1); color: var(--red); border: 1px solid rgba(239, 68, 68, 0.2); }
 
 .badge-source {
@@ -638,6 +740,7 @@ html, body, #root {
   gap: 6px;
   margin-bottom: 14px;
 }
+
 .qa-option {
   font-size: 11px;
   padding: 4px 10px;
@@ -646,6 +749,7 @@ html, body, #root {
   color: var(--text-secondary);
   border-radius: 6px;
 }
+
 .qa-option.selected {
   background: rgba(99, 102, 241, 0.1);
   border-color: rgba(99, 102, 241, 0.4);
@@ -659,14 +763,19 @@ html, body, #root {
   padding: 10px 12px;
   border-radius: 8px;
 }
+
 .qa-answer-label { font-size: 9px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-bottom: 2px; }
+
 .qa-answer-value { font-size: 13px; font-weight: 600; color: #fff; }
+
 .qa-reasoning { font-size: 11px; color: var(--text-secondary); margin-top: 6px; font-style: italic; display: flex; gap: 4px; }
 
 /* ── JSON Viewer Block ────────────────────────────────────── */
+
 .json-viewer {
   margin-top: 8px;
 }
+
 .json-block {
   background: rgba(0, 0, 0, 0.3);
   border: 1px solid var(--border);
@@ -698,3 +807,10 @@ html, body, #root {
   line-height: 1.5;
 }
 
+</style></head>
+  <body>
+    <div id="root"><div class="app"><header class="app-header"><div class="app-logo"><div class="logo-icon">🔬</div><div><div class="logo-text">Market Research Tracker</div><div class="logo-sub">Session Analyzer Console</div></div></div><div class="header-badge">Admin Dashboard</div></header><div class="tabs-nav"><button class="tab-btn active">🎥 Recorder Bridge</button><button class="tab-btn ">📊 Admin Verification Dashboard</button></div><main class="main" style="max-width: 720px; width: 100%;"><div class="card"><div class="card-title">Extension Status</div><div class="ext-status"><div class="ext-icon ready">✅</div><div class="ext-info"><div class="ext-label ready">Extension Detected</div><div class="ext-desc">Market Research Tracker is active and ready to capture data.</div></div><div class="ext-version">v1.0.0</div></div></div><div class="card"><div class="card-title">Survey Details</div><div class="survey-grid"><div class="survey-field"><div class="field-label">Survey ID</div><div class="field-value mono">demo-survey-001</div></div><div class="survey-field"><div class="field-label">Status</div><div class="field-value" style="color: rgb(239, 68, 68);">● Recording</div></div><div class="survey-field" style="grid-column: 1 / -1;"><div class="field-label">Survey URL</div><div class="field-value url">https://example.com/survey</div></div></div></div><div class="session-banner"><span class="session-banner-label">Active Session</span><span class="session-banner-id">a2dcd642-63bb-480c-8cb4-5bdbb6be5866</span></div><div class="card controls-card"><div class="timer ">00:20</div><button class="record-btn stop"><div class="btn-icon">⏹</div><div class="btn-label">Stop Recording</div><div class="btn-sub">Click to stop</div></button><div class="status-msg">🔴 Recording in progress. Switch to your survey tab and work normally.</div></div><div class="stats-bar"><div class="stat-item active"><div class="stat-num">8</div><div class="stat-label">Pages</div></div><div class="stat-item active"><div class="stat-num">1</div><div class="stat-label">Logs</div></div><div class="stat-item active"><div class="stat-num">9</div><div class="stat-label">Events</div></div><div class="stat-item active"><div class="stat-num red">5</div><div class="stat-label">Video Chunks</div></div></div></main></div></div>
+    <script type="module" src="/src/main.jsx"></script>
+  
+
+</body></html>

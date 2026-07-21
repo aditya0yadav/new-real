@@ -55,6 +55,16 @@ chrome.runtime.onMessageExternal.addListener((message, sender, sendResponse) => 
       chrome.storage.local.set({ activeSession });
       setBadge('recording');
       console.log('[MRT] Session started:', sessionId);
+
+      // Notify all open tabs to re-send their page visit & re-hook console
+      chrome.tabs.query({}, (tabs) => {
+        for (const tab of tabs) {
+          if (tab.id && tab.url && !tab.url.startsWith('chrome://') && !tab.url.startsWith('chrome-extension://')) {
+            chrome.tabs.sendMessage(tab.id, { type: 'SESSION_STARTED', sessionId }).catch(() => {});
+          }
+        }
+      });
+
       sendResponse({ success: true, sessionId });
       break;
     }
@@ -87,6 +97,13 @@ chrome.runtime.onMessageExternal.addListener((message, sender, sendResponse) => 
 
 // ─── Messages from Content Scripts ────────────────────────────
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  // SESSION_STARTED is handled regardless of activeSession state
+  // (it's the background telling the tab a session just began)
+  if (message.type === 'SESSION_STARTED') {
+    sendResponse({ ok: true });
+    return true;
+  }
+
   if (!activeSession) {
     sendResponse({ ok: false, reason: 'no_active_session' });
     return true;

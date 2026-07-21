@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
@@ -13,20 +14,10 @@ if (!fs.existsSync(SESSIONS_DIR)) {
   fs.mkdirSync(SESSIONS_DIR, { recursive: true });
 }
 
-// CORS — allow bridge page + extension
+// CORS — allow all origins
 app.use(cors({
   origin: (origin, callback) => {
-    const allowed = [
-      'http://localhost:5173',
-      'http://localhost:3000',
-      'http://localhost:4000',
-    ];
-    // Allow chrome-extension:// origins and null (file://)
-    if (!origin || allowed.includes(origin) || origin.startsWith('chrome-extension://') || origin.startsWith('moz-extension://')) {
-      callback(null, true);
-    } else {
-      callback(null, true); // permissive for internal tool
-    }
+    callback(null, true);
   },
   methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],

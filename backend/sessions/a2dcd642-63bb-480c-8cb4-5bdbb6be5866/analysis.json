@@ -1,0 +1,102 @@
+{
+  "sessionId": "a2dcd642-63bb-480c-8cb4-5bdbb6be5866",
+  "analyzedAt": "2026-07-03T22:56:06.828315Z",
+  "pages": [
+    {
+      "url": "https://tool.realsays.com/",
+      "snapshotFile": null,
+      "questions": []
+    },
+    {
+      "url": "https://dlcl.in/registration",
+      "snapshotFile": null,
+      "questions": [
+        {
+          "questionText": "Name of Participant:",
+          "questionType": "text",
+          "options": null,
+          "selectedAnswer": "Aditya",
+          "confidence": "high",
+          "source": "vision",
+          "elementId": null,
+          "reasoning": "The text is entered in a text field."
+        },
+        {
+          "questionText": "Your mobile number unique.",
+          "questionType": "text",
+          "options": null,
+          "selectedAnswer": "8920735656",
+          "confidence": "high",
+          "source": "vision",
+          "elementId": null,
+          "reasoning": "The text is entered in a text field."
+        },
+        {
+          "questionText": "Father's Name:",
+          "questionType": "text",
+          "options": null,
+          "selectedAnswer": "Jai Prakash Yadav",
+          "confidence": "high",
+          "source": "vision",
+          "elementId": null,
+          "reasoning": "The text is entered in a text field."
+        },
+        {
+          "questionText": "Mother's Name:",
+          "questionType": "text",
+          "options": null,
+          "selectedAnswer": "Meena Yadav",
+          "confidence": "high",
+          "source": "vision",
+          "elementId": null,
+          "reasoning": "The text is entered in a text field."
+        },
+        {
+          "questionText": "Age Group:",
+          "questionType": "select",
+          "options": null,
+          "selectedAnswer": "Under 16",
+          "confidence": "high",
+          "source": "vision",
+          "elementId": null,
+          "reasoning": "The text is selected from a dropdown or radio."
+        },
+        {
+          "questionText": "Category:",
+          "questionType": "select",
+          "options": null,
+          "selectedAnswer": "Select Category",
+          "confidence": "high",
+          "source": "vision",
+          "elementId": null,
+          "reasoning": "The text is selected from a dropdown or radio."
+        },
+        {
+          "questionText": "E-Mail:",
+          "questionType": "email",
+          "options": null,
+          "selectedAnswer": "",
+          "confidence": "low",
+          "source": "vision",
+          "elementId": null,
+          "reasoning": "The field is empty."
+        },
+        {
+          "questionText": "District:",
+          "questionType": "select",
+          "options": null,
+          "selectedAnswer": "",
+          "confidence": "low",
+          "source": "vision",
+          "elementId": null,
+          "reasoning": "The field is empty."
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "totalQuestions": 8,
+    "answeredQuestions": 6,
+    "completionRate": "75.0%"
+  }
+}

@@ -10,9 +10,11 @@
   if (window.__MRT_INJECTED__) return;
   window.__MRT_INJECTED__ = true;
 
+  const BACKEND_URL = 'http://localhost:4000';
   const pageEntryTime = Date.now();
   const pageUrl = window.location.href;
   const pageDomain = window.location.hostname;
+  let currentSessionId = null; // set when SESSION_STARTED fires
 
   // ── 1. Inject page-context console interceptor ────────────
   try {
@@ -47,8 +49,189 @@
     timestamp: pageEntryTime,
   });
 
+  // ── 3b. Listen for SESSION_STARTED ──────────────────────────
+  // If session wasn't active when page loaded, re-send everything when it starts
+  chrome.runtime.onMessage.addListener((msg) => {
+    if (msg.type !== 'SESSION_STARTED') return;
+
+    currentSessionId = msg.sessionId;
+
+    // Re-send page visit
+    sendToBackground('PAGE_VISIT', {
+      url: pageUrl,
+      domain: pageDomain,
+      title: document.title,
+      referrer: document.referrer,
+      entryTime: pageEntryTime,
+      timestamp: Date.now(),
+      retroactive: true,
+    });
+
+    // Capture rich environment data (timezone, IP, browser, device, network)
+    captureEnvironment(msg.sessionId);
+
+    // Post HTML snapshot directly to backend (bypasses 1MB Chrome message limit)
+    setTimeout(() => capturePageSnapshot(msg.sessionId), 300);
+
+    // Re-inject inject.js to ensure console is hooked
+    try {
+      const script = document.createElement('script');
+      script.src = chrome.runtime.getURL('inject.js');
+      (document.head || document.documentElement).appendChild(script);
+      script.addEventListener('load', () => script.remove());
+    } catch (_) {}
+  });
+
+  // ── 3c. Capture rich environment (timezone, IP, browser, device, network) ──
+  async function captureEnvironment(sessionId) {
+    const env = {
+      capturedAt: new Date().toISOString(),
+      pageUrl,
+
+      // ── Timezone & locale ──
+      timezone:       Intl.DateTimeFormat().resolvedOptions().timeZone,
+      timezoneOffset: new Date().getTimezoneOffset(),  // minutes from UTC (negative = ahead)
+      localTime:      new Date().toLocaleString(),
+      language:       navigator.language,
+      languages:      Array.from(navigator.languages || []),
+
+      // ── Browser fingerprint ──
+      userAgent:      navigator.userAgent,
+      platform:       navigator.platform,
+      vendor:         navigator.vendor,
+      cookieEnabled:  navigator.cookieEnabled,
+      doNotTrack:     navigator.doNotTrack,
+      onLine:         navigator.onLine,
+      javaEnabled:    navigator.javaEnabled?.() ?? false,
+
+      // ── Screen & display ──
+      screen: {
+        width:       screen.width,
+        height:      screen.height,
+        availWidth:  screen.availWidth,
+        availHeight: screen.availHeight,
+        colorDepth:  screen.colorDepth,
+        pixelDepth:  screen.pixelDepth,
+        pixelRatio:  window.devicePixelRatio,
+        orientation: screen.orientation?.type || null,
+      },
+
+      // ── Viewport (visible browser area) ──
+      viewport: {
+        width:  window.innerWidth,
+        height: window.innerHeight,
+      },
+
+      // ── Hardware ──
+      hardware: {
+        cpuCores:     navigator.hardwareConcurrency || null,
+        deviceMemory: navigator.deviceMemory || null,  // GB (rounded)
+        maxTouchPoints: navigator.maxTouchPoints || 0,
+      },
+
+      // ── Network connection ──
+      network: (() => {
+        const c = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        if (!c) return null;
+        return {
+          effectiveType: c.effectiveType || null,  // '4g', '3g', '2g', 'slow-2g'
+          downlink:      c.downlink || null,        // Mbps
+          rtt:           c.rtt || null,             // ms round trip time
+          saveData:      c.saveData || false,       // data saver mode on?
+          type:          c.type || null,            // 'wifi', 'cellular', etc.
+        };
+      })(),
+
+      // ── Page load performance ──
+      pagePerformance: (() => {
+        try {
+          const entries = performance.getEntriesByType('navigation');
+          if (entries.length > 0) {
+            const n = entries[0];
+            return {
+              dnsLookup:     Math.round(n.domainLookupEnd - n.domainLookupStart),
+              tcpConnect:    Math.round(n.connectEnd - n.connectStart),
+              tlsHandshake:  Math.round(n.secureConnectionStart > 0 ? n.connectEnd - n.secureConnectionStart : 0),
+              timeToFirstByte: Math.round(n.responseStart - n.requestStart),
+              downloadTime:  Math.round(n.responseEnd - n.responseStart),
+              domParsing:    Math.round(n.domInteractive - n.responseEnd),
+              domReady:      Math.round(n.domContentLoadedEventEnd),
+              fullPageLoad:  Math.round(n.loadEventEnd),
+              transferSizeKB: Math.round((n.transferSize || 0) / 1024),
+              cachedLoad:    n.transferSize === 0,
+            };
+          }
+        } catch (_) {}
+        return null;
+      })(),
+
+      // ── Storage quotas ──
+      storage: null, // filled async below
+
+      // ── IP & location (filled async below) ──
+      ip: null,
+      ipData: null,
+    };
+
+    // Get storage quota
+    try {
+      const quota = await navigator.storage?.estimate();
+      if (quota) {
+        env.storage = {
+          usedMB:  Math.round((quota.usage || 0) / 1024 / 1024),
+          quotaMB: Math.round((quota.quota || 0) / 1024 / 1024),
+        };
+      }
+    } catch (_) {}
+
+    // Get battery info
+    try {
+      const battery = await navigator.getBattery?.();
+      if (battery) {
+        env.battery = {
+          level:    Math.round(battery.level * 100),  // percentage
+          charging: battery.charging,
+          chargingTime: battery.chargingTime === Infinity ? null : battery.chargingTime,
+          dischargingTime: battery.dischargingTime === Infinity ? null : battery.dischargingTime,
+        };
+      }
+    } catch (_) {}
+
+    // Get IP address & geo from public API (no key needed)
+    try {
+      const ipRes = await fetch('https://ipapi.co/json/', { cache: 'no-store' });
+      if (ipRes.ok) {
+        const ipData = await ipRes.json();
+        env.ip = ipData.ip;
+        env.ipData = {
+          ip:          ipData.ip,
+          city:        ipData.city,
+          region:      ipData.region,
+          country:     ipData.country_name,
+          countryCode: ipData.country_code,
+          postal:      ipData.postal,
+          latitude:    ipData.latitude,
+          longitude:   ipData.longitude,
+          timezone:    ipData.timezone,  // cross-check with browser timezone
+          isp:         ipData.org,
+          asn:         ipData.asn,
+        };
+      }
+    } catch (_) {}
+
+    // POST directly to backend
+    try {
+      await fetch(`${BACKEND_URL}/api/session/${sessionId}/environment`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(env),
+      });
+    } catch (_) {}
+  }
+
   // ── 4. Full HTML snapshot + performance timing (on load) ──
-  function capturePageSnapshot() {
+  // sessionIdOverride: used when called from SESSION_STARTED (direct fetch, no 1MB limit)
+  function capturePageSnapshot(sessionIdOverride) {
     const html = document.documentElement.outerHTML;
     let timing = null;
 
@@ -77,7 +260,7 @@
       };
     }
 
-    sendToBackground('PAGE_HTML', {
+    const payload = {
       url: pageUrl,
       domain: pageDomain,
       title: document.title,
@@ -85,7 +268,20 @@
       timing,
       timestamp: Date.now(),
       htmlLength: html.length,
-    });
+    };
+
+    const sid = sessionIdOverride || currentSessionId;
+    if (sid && window.location.protocol !== 'https:') {
+      // Direct fetch to backend — avoids Chrome's 1MB message size limit (only on HTTP pages)
+      fetch(`${BACKEND_URL}/api/session/${sid}/html`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      }).catch(() => {});
+    } else {
+      // Fallback or HTTPS: relay through background (exempt from mixed-content restrictions)
+      sendToBackground('PAGE_HTML', payload);
+    }
   }
 
   if (document.readyState === 'complete') {
