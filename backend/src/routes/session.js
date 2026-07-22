@@ -215,6 +215,7 @@ router.post('/:id/event', (req, res) => {
     writeJSON(path.join(sessionDir, 'session.json'), session);
   }
 
+  console.log(`🖱️ Event: ${req.params.id.substring(0, 8)}... | ${req.body.type} (${req.body.target?.tag || 'unknown'}) | ${req.body.pageUrl || ''}`);
   res.json({ ok: true });
 });
 

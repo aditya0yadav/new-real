@@ -9,20 +9,32 @@ const BACKEND_URL = 'https://server.realsays.com';
 // Active session stored in memory + chrome.storage for persistence
 let activeSession = null;
 
+async function getActiveSession() {
+  if (activeSession && activeSession.sessionId) return activeSession;
+  try {
+    const data = await chrome.storage.local.get('activeSession');
+    if (data && data.activeSession && data.activeSession.sessionId) {
+      activeSession = data.activeSession;
+      return activeSession;
+    }
+  } catch (e) {
+    console.warn('[MRT] Error reading activeSession from storage:', e);
+  }
+  return null;
+}
+
 // ─── Restore state on startup ─────────────────────────────────
 chrome.runtime.onStartup.addListener(async () => {
-  const data = await chrome.storage.local.get('activeSession');
-  if (data.activeSession) {
-    activeSession = data.activeSession;
+  const session = await getActiveSession();
+  if (session) {
     setBadge('recording');
-    console.log('[MRT] Restored active session:', activeSession.sessionId);
+    console.log('[MRT] Restored active session on startup:', session.sessionId);
   }
 });
 
 chrome.runtime.onInstalled.addListener(async () => {
-  const data = await chrome.storage.local.get('activeSession');
-  if (data.activeSession) {
-    activeSession = data.activeSession;
+  const session = await getActiveSession();
+  if (session) {
     setBadge('recording');
   }
 });
@@ -35,13 +47,15 @@ chrome.runtime.onMessageExternal.addListener((message, sender, sendResponse) => 
 
     // Bridge page pings to check if extension is installed
     case 'PING':
-      sendResponse({
-        status: 'EXTENSION_READY',
-        version: chrome.runtime.getManifest().version,
-        hasActiveSession: !!activeSession,
-        activeSession: activeSession
+      getActiveSession().then((session) => {
+        sendResponse({
+          status: 'EXTENSION_READY',
+          version: chrome.runtime.getManifest().version,
+          hasActiveSession: !!session,
+          activeSession: session
+        });
       });
-      break;
+      return true;
 
     // Bridge page signals recording has started, pass sessionId & backendUrl
     case 'START_SESSION': {
@@ -55,7 +69,7 @@ chrome.runtime.onMessageExternal.addListener((message, sender, sendResponse) => 
       };
       chrome.storage.local.set({ activeSession });
       setBadge('recording');
-      console.log('[MRT] Session started:', sessionId, 'Backend:', activeSession.backendUrl);
+      console.log('[MRT] Session started:', sessionId, 'Target Backend:', activeSession.backendUrl);
 
       // Notify all open tabs to re-send their page visit & re-hook console
       chrome.tabs.query({}, (tabs) => {
@@ -83,17 +97,19 @@ chrome.runtime.onMessageExternal.addListener((message, sender, sendResponse) => 
 
     // Bridge page queries current status
     case 'GET_STATUS':
-      sendResponse({
-        hasActiveSession: !!activeSession,
-        activeSession: activeSession
+      getActiveSession().then((session) => {
+        sendResponse({
+          hasActiveSession: !!session,
+          activeSession: session
+        });
       });
-      break;
+      return true;
 
     default:
       sendResponse({ error: 'Unknown message type' });
   }
 
-  return true; // keep channel open for async responses
+  return true;
 });
 
 // ─── Messages from Content Scripts ────────────────────────────
@@ -103,41 +119,46 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     return true;
   }
 
-  if (!activeSession) {
-    sendResponse({ ok: false, reason: 'no_active_session' });
-    return true;
-  }
+  (async () => {
+    const session = await getActiveSession();
+    if (!session || !session.sessionId) {
+      sendResponse({ ok: false, reason: 'no_active_session' });
+      return;
+    }
 
-  const { sessionId } = activeSession;
+    const { sessionId } = session;
 
-  switch (message.type) {
-    case 'PAGE_VISIT':
-      postToBackend(`/api/session/${sessionId}/page`, message.data);
-      break;
+    switch (message.type) {
+      case 'PAGE_VISIT':
+        await postToBackend(`/api/session/${sessionId}/page`, message.data);
+        break;
 
-    case 'PAGE_HTML':
-      postToBackend(`/api/session/${sessionId}/html`, message.data);
-      break;
+      case 'PAGE_HTML':
+        await postToBackend(`/api/session/${sessionId}/html`, message.data);
+        break;
 
-    case 'CONSOLE_LOG':
-      postToBackend(`/api/session/${sessionId}/log`, message.data);
-      break;
+      case 'CONSOLE_LOG':
+        await postToBackend(`/api/session/${sessionId}/log`, message.data);
+        break;
 
-    case 'PAGE_EVENT':
-      postToBackend(`/api/session/${sessionId}/event`, message.data);
-      break;
+      case 'PAGE_EVENT':
+        await postToBackend(`/api/session/${sessionId}/event`, message.data);
+        break;
 
-    default:
-      break;
-  }
+      default:
+        break;
+    }
 
-  sendResponse({ ok: true });
-  return true;
+    sendResponse({ ok: true });
+  })();
+
+  return true; // Keep async message channel open
 });
 
 // ─── Helpers ──────────────────────────────────────────────────
 async function postToBackend(path, data) {
-  const targetBackend = activeSession?.backendUrl || BACKEND_URL;
+  const session = await getActiveSession();
+  const targetBackend = session?.backendUrl || BACKEND_URL;
   try {
     const res = await fetch(`${targetBackend}${path}`, {
       method: 'POST',
@@ -146,6 +167,8 @@ async function postToBackend(path, data) {
     });
     if (!res.ok) {
       console.warn('[MRT] Backend post returned status:', res.status, path);
+    } else {
+      console.log('[MRT] Data posted successfully:', path);
     }
   } catch (err) {
     console.warn('[MRT] Backend post failed:', targetBackend + path, err.message);
