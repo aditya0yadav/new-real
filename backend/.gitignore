@@ -1,0 +1,18 @@
+# Video recordings & video chunk files
+*.webm
+*.mp4
+chunk_*
+chunk_*.webm
+video/
+video/*
+sessions/*/video/
+sessions/*
+
+# Keep sessions directory structure with .gitkeep
+!sessions/.gitkeep
+
+# Node modules & logs
+node_modules/
+.env
+.DS_Store
+*.log

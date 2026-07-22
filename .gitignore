@@ -1,0 +1,37 @@
+# Video recordings & video chunk files
+*.webm
+*.mp4
+*.mkv
+*.avi
+chunk_*
+chunk_*.webm
+video/
+video/*
+**/video/
+**/video/*
+backend/sessions/*/video/
+sessions/*/video/
+
+# Recorded session data & HTML snapshots (except .gitkeep)
+backend/sessions/*
+!backend/sessions/.gitkeep
+
+# Environment & Secret files
+.env
+.env.local
+.env.production
+.env.development
+
+# Node dependencies & build artifacts
+node_modules/
+dist/
+build/
+.DS_Store
+*.log
+logs/
+
+# Python cache & virtual environments
+__pycache__/
+*.pyc
+.venv/
+venv/

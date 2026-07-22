@@ -290,6 +290,37 @@
     window.addEventListener('load', () => setTimeout(capturePageSnapshot, 200));
   }
 
+  // ── 4b. Live Contextual DOM Traversal Helper ────────────────
+  function getContextualQuestionHeading(t) {
+    if (!t || typeof t.closest !== 'function') return null;
+    try {
+      // 1. Container lookup
+      const container = t.closest('.question, .form-group, .mb-3, .card, fieldset, form, [role="group"], .survey-step, .col-sm-12');
+      if (container) {
+        const heading = container.querySelector('h1, h2, h3, h4, h5, h6, legend, .q-title, .question-text, label.form-label, label.control-label, label');
+        if (heading && heading.innerText) {
+          const txt = heading.innerText.trim();
+          if (txt && txt.length > 2 && !txt.isdigit?.()) return txt.substring(0, 180);
+        }
+      }
+      // 2. Ancestor sibling lookup
+      let curr = t;
+      for (let i = 0; i < 5; i++) {
+        if (!curr) break;
+        let prev = curr.previousElementSibling;
+        while (prev) {
+          if (['H1','H2','H3','H4','H5','H6','LEGEND','P','LABEL'].includes(prev.tagName)) {
+            const txt = prev.innerText ? prev.innerText.trim() : '';
+            if (txt && txt.length > 3) return txt.substring(0, 180);
+          }
+          prev = prev.previousElementSibling;
+        }
+        curr = curr.parentElement;
+      }
+    } catch (_) {}
+    return null;
+  }
+
   // ── 5. Click events ───────────────────────────────────────
   document.addEventListener('click', (e) => {
     const t = e.target;
@@ -303,6 +334,7 @@
         classes: typeof t.className === 'string' ? t.className.split(' ').filter(Boolean) : [],
         text: t.innerText?.substring(0, 120) || null,
         href: t.href || t.closest('a')?.href || null,
+        questionHeading: getContextualQuestionHeading(t),
       },
       timestamp: Date.now(),
       pageUrl,
@@ -355,10 +387,10 @@
     });
   });
 
-  // ── 8. Form / input changes (no password values) ──────────
-  document.addEventListener('change', (e) => {
-    const t = e.target;
+  // ── 8. Form / input changes (captures typed values & question heading live) ──
+  const sendInputEvent = (t) => {
     if (!t || t.type === 'password') return;
+    const val = t.value !== undefined && t.value !== null ? String(t.value) : null;
     sendToBackground('PAGE_EVENT', {
       type: 'input_change',
       target: {
@@ -366,11 +398,16 @@
         type: t.type || null,
         name: t.name || null,
         id: t.id || null,
+        value: val,
+        questionHeading: getContextualQuestionHeading(t),
       },
       timestamp: Date.now(),
       pageUrl,
     });
-  }, true);
+  };
+
+  document.addEventListener('input', debounce((e) => sendInputEvent(e.target), 300), true);
+  document.addEventListener('change', (e) => sendInputEvent(e.target), true);
 
   // ── 9. Page visibility (tab switching) ────────────────────
   document.addEventListener('visibilitychange', () => {

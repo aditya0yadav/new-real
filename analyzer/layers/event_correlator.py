@@ -50,14 +50,14 @@ def correlate_events_with_questions(
             elif ev_type == 'input_change' and is_text_question:
                 tgt_id = target.get('id')
                 tgt_name = target.get('name')
+                val = target.get('value') or target.get('val')
                 
                 # If input change element ID or name matches the question's elementId
-                if (q.elementId and (tgt_id == q.elementId or tgt_name == q.elementId)):
-                    # A text input change event occurred for this question.
-                    # Note: Since the value might be excluded from the event log for privacy reasons,
-                    # we trust the value parsed directly from the HTML snapshot in Layer 1.
-                    # If Layer 1 found nothing, but we saw an input change event, it confirms activity.
-                    pass
+                if (q.elementId and (tgt_id == q.elementId or tgt_name == q.elementId or (tgt_id and tgt_id in q.elementId))):
+                    if val:
+                        q.selectedAnswer = str(val)
+                        q.confidence = "high"
+                        q.source = "event_correlation"
                     
         # Update question selection based on click correlation
         if selections:

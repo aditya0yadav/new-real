@@ -1,6 +1,6 @@
 {
   "sessionId": "1ba4cebe-9ee1-4c86-a009-d05f07cbc586",
-  "analyzedAt": "2026-07-03T23:30:35.656571Z",
+  "analyzedAt": "2026-07-23T00:32:11.138864Z",
   "pages": [
     {
       "url": "https://dlcl.in/registration",
@@ -9,92 +9,102 @@
       "snapshotFile": null,
       "questions": [
         {
-          "questionText": "South West",
-          "questionType": "text",
-          "options": [],
-          "selectedAnswer": "",
-          "confidence": "high",
-          "source": "vision",
-          "elementId": null,
-          "reasoning": "No text entered"
-        },
-        {
-          "questionText": "Pin Code",
-          "questionType": "text",
-          "options": [],
-          "selectedAnswer": "110078",
-          "confidence": "high",
-          "source": "vision",
-          "elementId": null,
-          "reasoning": "Text entered in the input box"
-        },
-        {
-          "questionText": "D.O.B.",
-          "questionType": "text",
-          "options": [],
-          "selectedAnswer": "20/09/2005",
-          "confidence": "high",
-          "source": "vision",
-          "elementId": null,
-          "reasoning": "Text entered in the input box"
-        },
-        {
-          "questionText": "Game Format",
-          "questionType": "dropdown",
+          "questionText": "Survey Option Selected",
+          "questionType": "multiple_choice",
           "options": [
-            "One Day",
-            "One Day"
+            "Select Uniform Size\n34\n36\n38\n40\n42"
           ],
-          "selectedAnswer": "One Day",
+          "selectedAnswer": "Select Uniform Size\n34\n36\n38\n40\n42",
           "confidence": "high",
-          "source": "vision",
-          "elementId": null,
-          "reasoning": "Dropdown selected"
+          "source": "event_heuristics",
+          "elementId": "",
+          "reasoning": null
         },
         {
-          "questionText": "Gender",
-          "questionType": "dropdown",
+          "questionText": "Survey Option Selected",
+          "questionType": "multiple_choice",
           "options": [
-            "Male",
-            "Female"
+            "Select Category\nBatsman\nBowler\nAll Rounder\nWK"
           ],
-          "selectedAnswer": "Male",
+          "selectedAnswer": "Select Category\nBatsman\nBowler\nAll Rounder\nWK",
           "confidence": "high",
-          "source": "vision",
-          "elementId": null,
-          "reasoning": "Dropdown selected"
+          "source": "event_heuristics",
+          "elementId": "",
+          "reasoning": null
         },
         {
-          "questionText": "Select Your Trial Place",
-          "questionType": "dropdown",
+          "questionText": "Survey Option Selected",
+          "questionType": "multiple_choice",
           "options": [
-            "Delhi (NCR)"
+            "Select Category\nTop Order\nMiddle Order"
           ],
-          "selectedAnswer": "Delhi (NCR)",
+          "selectedAnswer": "Select Category\nTop Order\nMiddle Order",
           "confidence": "high",
-          "source": "vision",
-          "elementId": null,
-          "reasoning": "Dropdown selected"
+          "source": "event_heuristics",
+          "elementId": "",
+          "reasoning": null
         },
         {
-          "questionText": "Whatsapp Contact No.",
-          "questionType": "text",
+          "questionText": "Form Question (Email)",
+          "questionType": "open_text",
           "options": [],
-          "selectedAnswer": "8920735656",
+          "selectedAnswer": "[User Input Submitted]",
           "confidence": "high",
-          "source": "vision",
-          "elementId": null,
-          "reasoning": "Text entered in the input box"
+          "source": "event_heuristics",
+          "elementId": "email",
+          "reasoning": null
         },
         {
-          "questionText": "Registration Fee",
-          "questionType": "text",
+          "questionText": "Form Question (Address)",
+          "questionType": "open_text",
           "options": [],
-          "selectedAnswer": "500",
+          "selectedAnswer": "[User Input Submitted]",
           "confidence": "high",
-          "source": "vision",
-          "elementId": null,
-          "reasoning": "Text entered in the input box"
+          "source": "event_heuristics",
+          "elementId": "address",
+          "reasoning": null
+        },
+        {
+          "questionText": "Form Question (District)",
+          "questionType": "open_text",
+          "options": [],
+          "selectedAnswer": "[User Input Submitted]",
+          "confidence": "high",
+          "source": "event_heuristics",
+          "elementId": "district",
+          "reasoning": null
+        },
+        {
+          "questionText": "Form Question (Pincode)",
+          "questionType": "open_text",
+          "options": [],
+          "selectedAnswer": "[User Input Submitted]",
+          "confidence": "high",
+          "source": "event_heuristics",
+          "elementId": "pincode",
+          "reasoning": null
+        },
+        {
+          "questionText": "Survey Option Selected",
+          "questionType": "multiple_choice",
+          "options": [
+            "Select Gender\nMale\nFemale"
+          ],
+          "selectedAnswer": "Select Gender\nMale\nFemale",
+          "confidence": "high",
+          "source": "event_heuristics",
+          "elementId": "",
+          "reasoning": null
+        },
+        {
+          "questionText": "Form Question (Whatsapp Contact No)",
+          "questionType": "open_text",
+          "options": [],
+          "selectedAnswer": "[User Input Submitted]",
+          "confidence": "high",
+          "source": "event_heuristics",
+          "elementId": "whatsapp_contact_no",
+          "reasoning": null
         }
       ]
     },
@@ -107,8 +117,8 @@
     }
   ],
   "summary": {
-    "totalQuestions": 8,
-    "answeredQuestions": 7,
-    "completionRate": "87.5%"
+    "totalQuestions": 9,
+    "answeredQuestions": 9,
+    "completionRate": "100.0%"
   }
 }

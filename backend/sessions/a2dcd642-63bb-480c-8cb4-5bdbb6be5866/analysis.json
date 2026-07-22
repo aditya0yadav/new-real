@@ -1,102 +1,88 @@
 {
   "sessionId": "a2dcd642-63bb-480c-8cb4-5bdbb6be5866",
-  "analyzedAt": "2026-07-03T22:56:06.828315Z",
+  "analyzedAt": "2026-07-23T00:32:11.215987Z",
   "pages": [
     {
       "url": "https://tool.realsays.com/",
+      "domain": "tool.realsays.com",
+      "pageTitle": "platform",
       "snapshotFile": null,
       "questions": []
     },
     {
       "url": "https://dlcl.in/registration",
+      "domain": "dlcl.in",
+      "pageTitle": "Delhi Li\u2019l Cricket League. India\u2019s No 01 Performance based Cricket League",
       "snapshotFile": null,
       "questions": [
         {
-          "questionText": "Name of Participant:",
-          "questionType": "text",
-          "options": null,
-          "selectedAnswer": "Aditya",
+          "questionText": "Survey Option Selected",
+          "questionType": "multiple_choice",
+          "options": [
+            "Name of Participant:"
+          ],
+          "selectedAnswer": "Name of Participant:",
           "confidence": "high",
-          "source": "vision",
-          "elementId": null,
-          "reasoning": "The text is entered in a text field."
+          "source": "event_heuristics",
+          "elementId": "",
+          "reasoning": null
         },
         {
-          "questionText": "Your mobile number unique.",
-          "questionType": "text",
-          "options": null,
-          "selectedAnswer": "8920735656",
+          "questionText": "Form Question (Participant)",
+          "questionType": "open_text",
+          "options": [],
+          "selectedAnswer": "[User Input Submitted]",
           "confidence": "high",
-          "source": "vision",
-          "elementId": null,
-          "reasoning": "The text is entered in a text field."
+          "source": "event_heuristics",
+          "elementId": "participant",
+          "reasoning": null
         },
         {
-          "questionText": "Father's Name:",
-          "questionType": "text",
-          "options": null,
-          "selectedAnswer": "Jai Prakash Yadav",
+          "questionText": "Form Question (Mobile)",
+          "questionType": "open_text",
+          "options": [],
+          "selectedAnswer": "[User Input Submitted]",
           "confidence": "high",
-          "source": "vision",
-          "elementId": null,
-          "reasoning": "The text is entered in a text field."
+          "source": "event_heuristics",
+          "elementId": "mobile",
+          "reasoning": null
         },
         {
-          "questionText": "Mother's Name:",
-          "questionType": "text",
-          "options": null,
-          "selectedAnswer": "Meena Yadav",
+          "questionText": "Form Question (F Name)",
+          "questionType": "open_text",
+          "options": [],
+          "selectedAnswer": "[User Input Submitted]",
           "confidence": "high",
-          "source": "vision",
-          "elementId": null,
-          "reasoning": "The text is entered in a text field."
+          "source": "event_heuristics",
+          "elementId": "f_name",
+          "reasoning": null
         },
         {
-          "questionText": "Age Group:",
-          "questionType": "select",
-          "options": null,
-          "selectedAnswer": "Under 16",
+          "questionText": "Form Question (F Mobile)",
+          "questionType": "open_text",
+          "options": [],
+          "selectedAnswer": "[User Input Submitted]",
           "confidence": "high",
-          "source": "vision",
-          "elementId": null,
-          "reasoning": "The text is selected from a dropdown or radio."
+          "source": "event_heuristics",
+          "elementId": "f_mobile",
+          "reasoning": null
         },
         {
-          "questionText": "Category:",
-          "questionType": "select",
-          "options": null,
-          "selectedAnswer": "Select Category",
+          "questionText": "Form Question (M Name)",
+          "questionType": "open_text",
+          "options": [],
+          "selectedAnswer": "[User Input Submitted]",
           "confidence": "high",
-          "source": "vision",
-          "elementId": null,
-          "reasoning": "The text is selected from a dropdown or radio."
-        },
-        {
-          "questionText": "E-Mail:",
-          "questionType": "email",
-          "options": null,
-          "selectedAnswer": "",
-          "confidence": "low",
-          "source": "vision",
-          "elementId": null,
-          "reasoning": "The field is empty."
-        },
-        {
-          "questionText": "District:",
-          "questionType": "select",
-          "options": null,
-          "selectedAnswer": "",
-          "confidence": "low",
-          "source": "vision",
-          "elementId": null,
-          "reasoning": "The field is empty."
+          "source": "event_heuristics",
+          "elementId": "m_name",
+          "reasoning": null
         }
       ]
     }
   ],
   "summary": {
-    "totalQuestions": 8,
+    "totalQuestions": 6,
     "answeredQuestions": 6,
-    "completionRate": "75.0%"
+    "completionRate": "100.0%"
   }
 }

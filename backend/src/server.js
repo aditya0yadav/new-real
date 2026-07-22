@@ -29,7 +29,10 @@ app.use(express.urlencoded({ extended: true, limit: '100mb' }));
 // Serve raw session files (HTML snapshots, video chunks)
 app.use('/sessions-data', express.static(SESSIONS_DIR));
 
+const authRoutes = require('./routes/auth');
+
 // Routes
+app.use('/api/auth', authRoutes);
 app.use('/api/session', sessionRoutes);
 
 // Health check
