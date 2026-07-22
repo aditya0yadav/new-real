@@ -27,16 +27,22 @@
     console.warn('[MRT] Could not inject inject.js:', e);
   }
 
-  // ── 2. Receive console logs from inject.js ────────────────
+  // ── 2. Receive console logs from inject.js & window.postMessage ──
   window.addEventListener('message', (e) => {
-    if (e.source !== window || !e.data || e.data.__MRT_SOURCE__ !== 'inject') return;
-    sendToBackground('CONSOLE_LOG', {
-      level: e.data.level,
-      message: e.data.message,
-      stack: e.data.stack || null,
-      timestamp: e.data.timestamp,
-      pageUrl,
-    });
+    if (e.source !== window || !e.data) return;
+    if (e.data.__MRT_SOURCE__ === 'inject') {
+      sendToBackground('CONSOLE_LOG', {
+        level: e.data.level,
+        message: e.data.message,
+        stack: e.data.stack || null,
+        timestamp: e.data.timestamp,
+        pageUrl,
+      });
+    } else if (e.data.type === 'MRT_START_SESSION') {
+      sendToBackground('START_SESSION', e.data.payload || e.data);
+    } else if (e.data.type === 'MRT_STOP_SESSION') {
+      sendToBackground('STOP_SESSION', e.data.payload || e.data);
+    }
   });
 
   // ── 3. Page visit info (immediately) ─────────────────────

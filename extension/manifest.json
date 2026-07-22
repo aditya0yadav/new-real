@@ -53,6 +53,8 @@
       "http://127.0.0.1:*/*",
       "https://*.realsays.com/*",
       "https://realsays.com/*",
+      "https://*.lumivoc.com/*",
+      "https://lumivoc.com/*",
       "https://*.yourcompany.com/*"
     ]
   },

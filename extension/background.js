@@ -119,6 +119,32 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     return true;
   }
 
+  if (message.type === 'START_SESSION') {
+    const { sessionId, surveyId, surveyUrl, backendUrl } = message.data || message;
+    activeSession = {
+      sessionId,
+      surveyId,
+      surveyUrl,
+      backendUrl: backendUrl || BACKEND_URL,
+      startTime: Date.now()
+    };
+    chrome.storage.local.set({ activeSession });
+    setBadge('recording');
+    console.log('[MRT] Session started (via content script):', sessionId, 'Backend:', activeSession.backendUrl);
+    sendResponse({ success: true, sessionId });
+    return true;
+  }
+
+  if (message.type === 'STOP_SESSION') {
+    const stoppedId = activeSession?.sessionId || null;
+    activeSession = null;
+    chrome.storage.local.remove('activeSession');
+    setBadge('idle');
+    console.log('[MRT] Session stopped (via content script):', stoppedId);
+    sendResponse({ success: true, sessionId: stoppedId });
+    return true;
+  }
+
   (async () => {
     const session = await getActiveSession();
     if (!session || !session.sessionId) {
