@@ -72,26 +72,36 @@ export default function AdminPage() {
     if (!routeSessionId) return;
     setVerifying(true);
     setAnalysis(null);
-    setPipelineLogs('');
+    setPipelineLogs('🚀 Executing verification pipeline...');
 
     try {
+      const token = localStorage.getItem('recordx_token');
       const res = await fetch(`${BACKEND_URL}/api/session/${routeSessionId}/analyze`, {
-        method: 'POST'
-      });
-      const data = await res.json();
-      if (res.ok) {
-        if (data.success) {
-          setAnalysis(data.analysis);
-          setPipelineLogs(data.logs || '');
-          fetchSessions();
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(token ? { 'Authorization': `Bearer ${token}` } : {})
         }
-      } else {
+      });
+
+      const data = await res.json().catch(() => ({ 
+        error: `HTTP ${res.status} ${res.statusText}`, 
+        logs: 'Server returned non-JSON response.' 
+      }));
+
+      if (res.ok && data.success) {
+        setAnalysis(data.analysis);
         setPipelineLogs(data.logs || '');
-        alert('Verification pipeline error. Check output logs below.');
+        fetchSessions();
+      } else {
+        setPipelineLogs(data.logs || data.error || 'Pipeline execution failed.');
+        alert('Verification error: ' + (data.error || 'Check output logs below.'));
       }
     } catch (err) {
       console.error('Analysis error:', err);
-      alert('Verification request failed.');
+      const msg = `Connection Error: ${err.message}\nTarget URL: ${BACKEND_URL}/api/session/${routeSessionId}/analyze\n\nPossible Causes:\n1. Server SSL/HTTPS mismatch or Nginx timeout\n2. Backend server is offline or python3/bs4 missing on server.`;
+      setPipelineLogs(msg);
+      alert(`Server Connection Error: ${err.message}\nPlease check backend server logs or Nginx timeout settings.`);
     } finally {
       setVerifying(false);
     }
