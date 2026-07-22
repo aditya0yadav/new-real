@@ -4,7 +4,7 @@
 //           content script data relay to backend
 // =============================================================
 
-const BACKEND_URL = 'http://localhost:4000';
+const BACKEND_URL = 'https://server.realsays.com';
 
 // Active session stored in memory + chrome.storage for persistence
 let activeSession = null;
@@ -43,18 +43,19 @@ chrome.runtime.onMessageExternal.addListener((message, sender, sendResponse) => 
       });
       break;
 
-    // Bridge page signals recording has started, pass sessionId
+    // Bridge page signals recording has started, pass sessionId & backendUrl
     case 'START_SESSION': {
-      const { sessionId, surveyId, surveyUrl } = message;
+      const { sessionId, surveyId, surveyUrl, backendUrl } = message;
       activeSession = {
         sessionId,
         surveyId,
         surveyUrl,
+        backendUrl: backendUrl || BACKEND_URL,
         startTime: Date.now()
       };
       chrome.storage.local.set({ activeSession });
       setBadge('recording');
-      console.log('[MRT] Session started:', sessionId);
+      console.log('[MRT] Session started:', sessionId, 'Backend:', activeSession.backendUrl);
 
       // Notify all open tabs to re-send their page visit & re-hook console
       chrome.tabs.query({}, (tabs) => {
@@ -97,8 +98,6 @@ chrome.runtime.onMessageExternal.addListener((message, sender, sendResponse) => 
 
 // ─── Messages from Content Scripts ────────────────────────────
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  // SESSION_STARTED is handled regardless of activeSession state
-  // (it's the background telling the tab a session just began)
   if (message.type === 'SESSION_STARTED') {
     sendResponse({ ok: true });
     return true;
@@ -138,14 +137,18 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
 // ─── Helpers ──────────────────────────────────────────────────
 async function postToBackend(path, data) {
+  const targetBackend = activeSession?.backendUrl || BACKEND_URL;
   try {
-    await fetch(`${BACKEND_URL}${path}`, {
+    const res = await fetch(`${targetBackend}${path}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
     });
+    if (!res.ok) {
+      console.warn('[MRT] Backend post returned status:', res.status, path);
+    }
   } catch (err) {
-    console.warn('[MRT] Backend post failed:', path, err.message);
+    console.warn('[MRT] Backend post failed:', targetBackend + path, err.message);
   }
 }
 

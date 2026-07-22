@@ -127,7 +127,7 @@ export default function RecorderPage() {
       await new Promise((resolve, reject) => {
         chrome.runtime.sendMessage(
           EXTENSION_ID,
-          { type: 'START_SESSION', sessionId: sid, surveyId, surveyUrl },
+          { type: 'START_SESSION', sessionId: sid, surveyId, surveyUrl, backendUrl: BACKEND_URL },
           (res) => {
             if (chrome.runtime.lastError) reject(chrome.runtime.lastError);
             else resolve(res);
