@@ -51,36 +51,40 @@
 
   // ── 3b. Listen for SESSION_STARTED ──────────────────────────
   // If session wasn't active when page loaded, re-send everything when it starts
-  chrome.runtime.onMessage.addListener((msg) => {
-    if (msg.type !== 'SESSION_STARTED') return;
+  try {
+    if (typeof chrome !== 'undefined' && chrome?.runtime?.onMessage) {
+      chrome.runtime.onMessage.addListener((msg) => {
+        if (!msg || msg.type !== 'SESSION_STARTED') return;
 
-    currentSessionId = msg.sessionId;
+        currentSessionId = msg.sessionId;
 
-    // Re-send page visit
-    sendToBackground('PAGE_VISIT', {
-      url: pageUrl,
-      domain: pageDomain,
-      title: document.title,
-      referrer: document.referrer,
-      entryTime: pageEntryTime,
-      timestamp: Date.now(),
-      retroactive: true,
-    });
+        // Re-send page visit
+        sendToBackground('PAGE_VISIT', {
+          url: pageUrl,
+          domain: pageDomain,
+          title: document.title,
+          referrer: document.referrer,
+          entryTime: pageEntryTime,
+          timestamp: Date.now(),
+          retroactive: true,
+        });
 
-    // Capture rich environment data (timezone, IP, browser, device, network)
-    captureEnvironment(msg.sessionId);
+        // Capture rich environment data (timezone, IP, browser, device, network)
+        captureEnvironment(msg.sessionId);
 
-    // Post HTML snapshot directly to backend (bypasses 1MB Chrome message limit)
-    setTimeout(() => capturePageSnapshot(msg.sessionId), 300);
+        // Post HTML snapshot directly to backend
+        setTimeout(() => capturePageSnapshot(msg.sessionId), 300);
 
-    // Re-inject inject.js to ensure console is hooked
-    try {
-      const script = document.createElement('script');
-      script.src = chrome.runtime.getURL('inject.js');
-      (document.head || document.documentElement).appendChild(script);
-      script.addEventListener('load', () => script.remove());
-    } catch (_) {}
-  });
+        // Re-inject inject.js to ensure console is hooked
+        try {
+          const script = document.createElement('script');
+          script.src = chrome.runtime.getURL('inject.js');
+          (document.head || document.documentElement).appendChild(script);
+          script.addEventListener('load', () => script.remove());
+        } catch (_) {}
+      });
+    }
+  } catch (_) {}
 
   // ── 3c. Capture rich environment (timezone, IP, browser, device, network) ──
   async function captureEnvironment(sessionId) {
@@ -421,9 +425,15 @@
 
   // ── Helpers ───────────────────────────────────────────────
   function sendToBackground(type, data) {
-    chrome.runtime.sendMessage({ type, data }).catch(() => {
-      // Silently fail — session may not be active
-    });
+    try {
+      if (typeof chrome === 'undefined' || !chrome?.runtime?.id || !chrome?.runtime?.sendMessage) return;
+      const p = chrome.runtime.sendMessage({ type, data });
+      if (p && typeof p.catch === 'function') {
+        p.catch(() => {});
+      }
+    } catch (_) {
+      // Extension context invalidated when user reloads extension in chrome://extensions
+    }
   }
 
   function debounce(fn, delay) {
