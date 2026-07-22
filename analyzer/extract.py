@@ -17,7 +17,10 @@ from analyzer.layers.vision_extractor import run_vision_fallback, run_vision_for
 IGNORE_BUTTON_TEXTS = {
     "start", "next", "submit", "continue", "agree & continue",
     "立即前往问卷", "reward not earned", "click here", "proceed",
-    "confirm", "agree", "ok", "cancel", "close", "back"
+    "confirm", "agree", "ok", "cancel", "close", "back",
+    "停止录制并提交", "停止录制", "提交", "下一步", "开始", "继续",
+    "stop recording", "stop recording & submit", "stop recording and submit",
+    "finish", "done", "skip", "同意并继续", "确认", "完成"
 }
 
 def extract_questions_from_events(events: List[Dict[str, Any]], url: str) -> List[QuestionAnswer]:
@@ -25,6 +28,10 @@ def extract_questions_from_events(events: List[Dict[str, Any]], url: str) -> Lis
     Event-Heuristic Extractor:
     Reconstructs clean, deduplicated Q&A pairs directly from DOM interaction events.
     """
+    # Exclude launcher detail pages
+    if "/detail?" in url or "member.Platform/link" in url:
+        return []
+
     page_events = [e for e in events if e.get("pageUrl") == url]
     if not page_events:
         return []
@@ -89,8 +96,9 @@ def extract_questions_from_events(events: List[Dict[str, Any]], url: str) -> Lis
             clicked_id = target.get("id") or ""
             q_heading = target.get("questionHeading")
 
-            # Skip navigation / CTA buttons
-            if clicked_text.lower() in IGNORE_BUTTON_TEXTS or not clicked_text:
+            # Skip navigation / CTA / stop recording buttons
+            t_lower = clicked_text.lower()
+            if t_lower in IGNORE_BUTTON_TEXTS or any(k in t_lower for k in ["停止录制", "stop recording", "前往问卷"]):
                 continue
                 
             # Skip pure numbers or raw element IDs if they are click artifacts
@@ -121,7 +129,7 @@ def extract_questions_from_events(events: List[Dict[str, Any]], url: str) -> Lis
                         selectedAnswer=clicked_text,
                         confidence="high",
                         source="event_heuristics",
-                        elementId=clicked_id
+                        elementId=""
                     )
 
     # Post-process & consolidate duplicate entries
@@ -170,7 +178,7 @@ def run_pipeline(session_id: str, sessions_base_dir: str):
         url = p.get("url")
         if not url or url in seen_urls:
             continue
-        if "chrome-extension://" in url or "devtools://" in url:
+        if "chrome-extension://" in url or "devtools://" in url or "/detail?" in url or "member.Platform/link" in url:
             continue
         seen_urls.add(url)
         visited_pages.append(p)
@@ -180,7 +188,7 @@ def run_pipeline(session_id: str, sessions_base_dir: str):
         print("  ⚠️ pages.json was empty or missing. Falling back to unique URLs from events.json...")
         for ev in events:
             url = ev.get("pageUrl")
-            if url and url not in seen_urls and not url.startswith("chrome-extension://"):
+            if url and url not in seen_urls and not url.startswith("chrome-extension://") and "/detail?" not in url and "member.Platform/link" not in url:
                 seen_urls.add(url)
                 visited_pages.append({"url": url, "domain": "", "title": "Survey Page"})
 
