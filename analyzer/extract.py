@@ -170,11 +170,23 @@ def run_pipeline(session_id: str, sessions_base_dir: str):
         url = p.get("url")
         if not url or url in seen_urls:
             continue
-        if "localhost" in url or "chrome-extension" in url:
+        if "chrome-extension://" in url or "devtools://" in url:
             continue
         seen_urls.add(url)
         visited_pages.append(p)
         
+    # Fallback: If pages.json yielded no pages, collect unique URLs directly from events.json
+    if not visited_pages and events:
+        print("  ⚠️ pages.json was empty or missing. Falling back to unique URLs from events.json...")
+        for ev in events:
+            url = ev.get("pageUrl")
+            if url and url not in seen_urls and not url.startswith("chrome-extension://"):
+                seen_urls.add(url)
+                visited_pages.append({"url": url, "domain": "", "title": "Survey Page"})
+
+    if not visited_pages:
+        print("  ⚠️ No valid survey pages found in pages.json or events.json for this session.")
+
     analyzed_pages = []
     video_dir = os.path.join(session_dir, "video")
     has_video = len(glob.glob(os.path.join(video_dir, "chunk_*.webm"))) > 0
