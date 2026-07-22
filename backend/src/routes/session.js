@@ -338,31 +338,47 @@ router.get('/:id/analysis', (req, res) => {
 
 // POST /api/session/:id/analyze — trigger python analysis and return analysis.json
 router.post('/:id/analyze', (req, res) => {
-  const sessionDir = getSessionDir(req.params.id);
-  if (!fs.existsSync(sessionDir)) return res.status(404).json({ error: 'Session not found' });
+  const sessionId = req.params.id;
+  console.log(`\n🔍 [Analyze Request Received] Session ID: ${sessionId}`);
+
+  const sessionDir = getSessionDir(sessionId);
+  if (!fs.existsSync(sessionDir)) {
+    console.warn(`⚠️ [Analyze Error] Session directory not found: ${sessionDir}`);
+    return res.status(404).json({ error: `Session directory not found: ${sessionId}` });
+  }
 
   const analyzerScript = path.join(__dirname, '../../../analyzer/extract.py');
-  const pythonCmd = `python3 "${analyzerScript}" "${req.params.id}" "${SESSIONS_DIR}"`;
+  const pythonCmd = `python3 "${analyzerScript}" "${sessionId}" "${SESSIONS_DIR}"`;
+
+  console.log(`🚀 [Analyze Executing] Command: ${pythonCmd}`);
+  const startTime = Date.now();
 
   const { exec } = require('child_process');
   exec(pythonCmd, (error, stdout, stderr) => {
+    const elapsed = Date.now() - startTime;
     const logPath = path.join(sessionDir, 'analysis.log');
-    const fullLog = stdout + (stderr ? '\n' + stderr : '');
+    const fullLog = stdout + (stderr ? '\n--- STDERR ---\n' + stderr : '');
+    
     try { fs.writeFileSync(logPath, fullLog, 'utf8'); }
-    catch (_) {}
+    catch (e) { console.error(`⚠️ Could not write analysis.log: ${e.message}`); }
 
     if (error) {
-      console.error(`[Analyzer Error] Failed to run pipeline: ${error.message}`);
+      console.error(`❌ [Analyze Error] Python pipeline failed after ${elapsed}ms: ${error.message}`);
+      if (stderr) console.error(`   Stderr Output:\n${stderr}`);
       return res.status(500).json({ error: `Pipeline failed: ${error.message}`, logs: fullLog });
     }
     
+    console.log(`✅ [Analyze Success] Finished in ${elapsed}ms for session ${sessionId}`);
+
     const analysisPath = path.join(sessionDir, 'analysis.json');
     const analysis = readJSON(analysisPath);
     
     if (analysis) {
+      console.log(`📊 [Analyze Result] Parsed ${analysis.summary?.totalQuestions || 0} questions, completion: ${analysis.summary?.completionRate || '0%'}`);
       res.json({ success: true, analysis, logs: fullLog });
     } else {
-      res.status(500).json({ error: 'Pipeline finished but analysis.json was not found', logs: fullLog });
+      console.error(`⚠️ [Analyze Error] Python completed but analysis.json file missing at: ${analysisPath}`);
+      res.status(500).json({ error: 'Pipeline finished but analysis.json file was not generated', logs: fullLog });
     }
   });
 });
